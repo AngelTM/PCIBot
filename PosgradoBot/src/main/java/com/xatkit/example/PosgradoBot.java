@@ -20,7 +20,13 @@ import com.xatkit.core.recognition.dialogflow.DialogFlowConfiguration;
 import com.xatkit.core.recognition.nlpjs.NlpjsIntentRecognitionProvider;
 import com.xatkit.core.recognition.nlpjs.NlpjsConfiguration;
 
-import com.xatkit.plugins.openai.platform.OpenaiPlatform;
+import java.util.ArrayList;
+import com.theokanning.openai.OpenAiService;
+import com.theokanning.openai.completion.CompletionRequest;
+import com.theokanning.openai.completion.CompletionChoice;
+
+import java.io.*;
+
 
 /**
  * This is an example greetings bot designed with Xatkit.
@@ -28,14 +34,68 @@ import com.xatkit.plugins.openai.platform.OpenaiPlatform;
  * You can check our <a href="https://github.com/xatkit-bot-platform/xatkit/wiki">wiki</a>
  * to learn more about bot creation, supported platforms, and advanced usage.
  */
+
 public class PosgradoBot {
 
     /*
      * Your bot is a plain Java application: you need to define a main method to make the created jar executable.
      */
+    
+
     public static void main(String[] args) {
-        //OpenaiPlatform.checkOpenAIClient("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");
-        
+        OpenAiService service = new OpenAiService("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");
+        ArrayList<String> storyArray = new ArrayList<String>();
+        String promtDirecto="Lista de opciones:\n"+
+        "Tienes una guía del examen?\n"+
+        "¿Dónde están ubicados?\n"+
+        "Datos de Contacto\n"+
+        "Información sobre los docentes\n"+
+        "Cuál es el plan de estudios del programa de maestría\n"+
+        "Cuáles son las líneas de investigación\n"+
+        "Información sobre movilidad\n"+
+        "Información frecuencia de la convocatoria\n"+
+        "Cuál es la fecha de inicio de actividades\n"+
+        "Cuál es la fecha del Curso propedéutico y examen de conocimientos\n"+
+        "Información sobre fecha de Recepción de documentos\n"+
+        "Información sobre fecha de preinscripciones\n"+
+        "Información sobre la modalidad de los exámenes\n"+
+        "Información sobre la modalidad del posgrado\n"+
+        "Información sobre entrevista\n"+
+        "¿Cuándo obtengo los resultados de admisión?\n"+
+        "Información sobre becas\n"+
+        "¿Que tengo que hacer para entrar al posgrado?\n"+
+        "Información sobre proceso de preinscripción.\n"+
+        "Cuáles son los requisitos para ingresar a maestría?\n"+
+        "Información sobre duración del programa de posgrado\n"+
+        "¿Cuál es el perfil de egreso de un alumno de maestría?\n"+
+        "Información acerca del posgrado.\n"+
+        "Información  sobre costos\n"+
+        "¿Cómo te hicieron?\n"+
+        "Cuál es la fecha del Curso propedéutico y examen de conocimientos\n"+
+        "Instrucciones:\n"+
+        "pregunta al usuario la opción que puede interesarle de la Lista de opciones según el mensaje del usuario en la conversación de la misma forma que en el Ejemplo , solo puedes contestar con ejemplos de la Lista de opciones y debes realizar una sugerencia que tenga relación con el mensaje del usuario, la sugerencia debe ser siempre en español.\n"+
+        "Ejemplo:\n"+
+        "usuario: pero no tengo dinero\n"+
+        "sugerencia: si te interesa puedes intentar escribir: Información sobre becas\n"+
+        "usuario: no entendí que tengo que hacer\n"+
+        "sugerencia: si te interesa puedes intentar escribir: ¿Que tengo que hacer para entrar al posgrado?\n"+
+        "usuario: ¿me queda muy lejos?\n"+
+        "sugerencia: si te interesa puedes intentar escribir: ¿Dónde están ubicados?\n"+
+        "usuario: esta muy caro?\n"+
+        "sugerencia: si te interesa puedes intentar escribir: Información  sobre costos\n"+
+        "usuario: is expensive?\n"+
+        "sugerencia: si te interesa puedes intentar escribir: Información  sobre costos\n"+
+        "usuario: Is it too far from my house?\n"+
+        "sugerencia: si te interesa puedes intentar escribir: ¿Dónde están ubicados?\n"+
+        "usuario: estoy aburrido\n"+
+        "sugerencia: si te interesa puedes intentar escribir: Información sobre movilidad\n"+
+        "usuario: I don't know what to do\n"+
+        "sugerencia: si te interesa puedes intentar escribir: Información  general\n"+
+        "Conversación:\n"+
+        "usuario:"; 
+        ArrayList<String> stopList = new ArrayList<String>();
+        stopList.add("sugerencia:");
+        stopList.add("\n");
         /*
          * Define the intents our bot will react to.
          * Note that we recommend the usage of Lombok's val when using the Xatkit DSL: the fluent API defines many
@@ -66,15 +126,15 @@ public class PosgradoBot {
 
         val informacionGeneral = intent("informacionGeneral")
                 .trainingSentence("Información")
-                .trainingSentence("Quiero informacion")
-                .trainingSentence("necesito informacion")
-                .trainingSentence("informacion general")
-                .trainingSentence("solicito informacion");
+                .trainingSentence("Quiero Información ")
+                .trainingSentence("necesito Información ")
+                .trainingSentence("Información  general")
+                .trainingSentence("solicito Información ");
 
         val informacionAcercaDePosgrado = intent("informacionAcercaDePosgrado")
                 .trainingSentence("Información acerca del posgrado.")
                 .trainingSentence("Que es el PCI?")
-                .trainingSentence("que es el posgrado en ciencias de la informacion")
+                .trainingSentence("que es el posgrado en ciencias de la Información ")
                 .trainingSentence("Cuéntame del posgrado en ciencias de la información");
 
         val paraQueSirveElPosgrado = intent("paraQueSirveElPosgrado")
@@ -97,9 +157,10 @@ public class PosgradoBot {
 
         //proceso de inscripcion y requisitos 
         val requisitos = intent("requisitos")
-                .trainingSentence("cuáles son los requisitos para ingresar al PROGRAMA?")
-                .trainingSentence("Que necesito para entrar al PROGRAMA?")
-                .trainingSentence("Cuales son los requisitos previos para ingresar al PROGRAMA?");//debes completar el proceso de preinscripcion ademas necesitaras lo siguiente:
+                .trainingSentence("cuáles son los requisitos para ingresar a PROGRAMA?")
+                .trainingSentence("Que necesito para entrar a PROGRAMA?")
+                .trainingSentence("Cuales son los requisitos previos para ingresar a PROGRAMA?")
+                .parameter("nombrePrograma").fromFragment("PROGRAMA").entity(any());//debes completar el proceso de preinscripcion ademas necesitaras lo siguiente:
 
 
         val procesoPreinscripcion = intent("procesoPreinscripcion")
@@ -110,8 +171,9 @@ public class PosgradoBot {
                 .trainingSentence("como realizar la pre inscripcion");
 
         val recepcionDocumentos = intent("recepcionDocumentos")
-                .trainingSentence("quería saber los requisitos para iniciar el proceso")
+                .trainingSentence("Que tengo que hacer para entrar al posgrado")
                 .trainingSentence("Como puedo iniciar el proceso")
+                .trainingSentence("quería saber los requisitos para iniciar el proceso")
                 .trainingSentence("Que tengo que hacer para entrar al posgrado")
                 .trainingSentence("Quiero entrar al posgrado")
                 .trainingSentence("Como entrego los documentos?")
@@ -124,20 +186,18 @@ public class PosgradoBot {
                 .trainingSentence("Información sobre proceso de inscripción.")
                 .trainingSentence("Información sobre inscripción")
                 .trainingSentence("requisitos de inscripcion")
-                .trainingSentence("Que tengo que hacer despues de preinscribirme")
                 .trainingSentence("Cuando son las inscripciones?")
-                .trainingSentence("Después de la pre inscripción qué procede?")
                 .trainingSentence("como puedo inscribirme?");
 
         val costosProcesosBecas = intent("costosProcesosBecas")
-                .trainingSentence("Informacion sobre costos")
+                .trainingSentence("Información  sobre costos")
                 .trainingSentence("que mensualidad tiene")
                 .trainingSentence("Cuáles son los costos de las materias o semestres?")
                 .trainingSentence("cada cuanto pagan?")
                 .trainingSentence("Cuanto cuesta?");
 
         val tienenBeca = intent("tienenBeca")
-                .trainingSentence("Informacion sobre becas")
+                .trainingSentence("Información  sobre becas")
                 .trainingSentence("¿La Maestría en Ciencias de la Información y el Doctorado en Ciencias de la Información, tienen becas para estudiar?")
                 .trainingSentence("Tienen beca?")
                 .trainingSentence("¿Cuánto tiempo dura la beca?")
@@ -170,6 +230,7 @@ public class PosgradoBot {
                 .trainingSentence("Donde se realizara el examen de admision?");
 
         val fechaPreinscripciones = intent("fechaPreinscripciones")
+                .trainingSentence("Cual es la fecha de las preinscripciones")
                 .trainingSentence("información sobre fecha de preinscripciones")
                 .trainingSentence("Cual es el periodo de preinscripcion")
                 .trainingSentence("Hasta cuando tengo para completar el proceso de preinscripción?")
@@ -203,7 +264,7 @@ public class PosgradoBot {
                 .trainingSentence("cuando empiezan las clases?");
         
         val frecuenciaConvocatoria= intent("frecuenciaConvocatoria")
-                .trainingSentence("Información frecuencia de la convocatoria?")
+                .trainingSentence("Información frecuencia de la convocatoria")
                 .trainingSentence("Cada cuánto se abre la convocatoria?")
                 .trainingSentence("despues de este periodo no podre volver a inscribirme?");
 
@@ -244,7 +305,7 @@ public class PosgradoBot {
                 .trainingSentence("Tienen Correo electronico?")
                 .trainingSentence("tienen pagina de facebook?")
                 .trainingSentence("Tienen pagina web?")
-                .trainingSentence("donde puedo conseguir mas informacion?");
+                .trainingSentence("donde puedo conseguir mas Información?");
         
         val direccion = intent("direccion")
                 .trainingSentence("Donde estan ubicados?")
@@ -374,6 +435,7 @@ public class PosgradoBot {
         init
                 .next()
                 .moveTo(estadoEspera);
+                
 
         estadoEspera
                 .next()
@@ -425,7 +487,7 @@ public class PosgradoBot {
                 .when(intentIs(guiasExamen)).moveTo(handleGuiasExamen)
                 .when(intentIs(tienenBeca)).moveTo(handleTienenBeca);
         estadoSaludo
-                .body(context -> twilioPlatform.replyMedia(context,"Buen día 😄, mi nombre es Angel y puedo asistirte con información acerca del posgrado en ciencias de información, ¿en que puedo ayudarte hoy?","https://raw.githubusercontent.com/AngelTM/assetsPosgradoBot/4389dda46bd9843f8293c0031858b9863c1c79b3/Convocatoria-PCI-2022.jpg"))
+                .body(context -> twilioPlatform.reply(context,"Buen día 😄, mi nombre es Angel y puedo asistirte con información acerca del posgrado en ciencias de información, ¿en que puedo ayudarte hoy?"))
                 .next()
                 /*
                  * A transition that is automatically navigated: in this case once we have answered the user we
@@ -570,25 +632,24 @@ public class PosgradoBot {
                 .moveTo(estadoEspera);
         
         handleProcesoPreinscripcion
-                .body(context -> twilioPlatform.reply(context, "Despues de la primera *entrega de documentos de admisión*  necesitas hacer es llevar a cabo tu proceso de preinscripción el cual puedes encontrar completo en el portal https://pci.uas.edu.mx/proceso-de-admision/ en el apartado proceso de preinscripción. \n \n"+
-                "*deseas que te muestre la lista completa de pasos para preinscripción?* "))
+                .body(context -> twilioPlatform.reply(context, "Despues de la primera *entrega de documentos de admisión*  necesitas llevar a cabo tu proceso de preinscripción el cual puedes encontrar completo en el portal https://pci.uas.edu.mx/proceso-de-admision/ en el apartado proceso de preinscripción. \n \n"+
+                "¿*deseas que te muestre la lista completa de pasos para preinscripción?* "))
                 .next()
                         .when(intentIs(ofrecerAyuda)).moveTo(handleProcesoPreinscripcionPasos)
                         .when(intentIs(respuestaNegativa)).moveTo(entiendo)
                         .fallback(context -> twilioPlatform.reply(context, "por favor responde si quieres que te muestre o no los pasos de preinscripción con un *si* o *no*"));
                         
         handleProcesoPreinscripcionPasos
-                .body(context -> twilioPlatform.reply(context, "para realizar el proceso de preinscripción necesitas seguir los siguientes pasos:\n\n"+
+                .body(context -> twilioPlatform.reply(context, "Para realizar el proceso de preinscripción necesitas seguir los siguientes pasos:\n\n"+
                         "1- ingresar al siguiente enlace: http://siia.uasnet.mx/preinscripcion/paso1a.asp\n \n"+
                         "2- En la opción PRIMER INGRESO llenar el formulario con tus datos y seleccionar el nivel académico (Maestría o Doctorado). En la misma ventana selecciona la localidad donde está ubicado el Posgrado, la Unidad Académica y el Programa Educativo a cursar.\n\n"+
-                        "3- asegúrate de llenar todos tus datos y hacer click en la pestaña “acepto términos y condiciones”. Es requisito indispensable proporciones estos datos y aceptes te envíen mensajes por correo electrónico y/o teléfono, ya que sólo mediante esta vía se te informará el número de ficha de preinscripción y contraseña, con las cuales podrás continuar con el proceso. Al terminar de llenar toda la información haz clic en REGISTRAR, con lo cual el sistema generará un número de control con los datos proporcionados, que debes conservar para cualquier aclaración durante el proceso.\n\n"+
-                        "4- En el correo y/o mensaje que recibirás, se indica el número de ficha de preinscripción y la clave con los cuales puedes ingresar de nueva cuenta a la página de preinscripción y en la opción CONTINUAR imprimirás la hoja de pago de preinscripción, así como tu ficha de preinscripción\n \n."
-                        ))
+                        "3- asegúrate de llenar todos tus datos y hacer click en la pestaña “acepto términos y condiciones”. Es requisito indispensable proporciones estos datos y aceptes te envíen mensajes por correo electrónico y/o teléfono, ya que sólo mediante esta vía se te informará el número de ficha de preinscripción y contraseña, Al terminar de llenar toda la información haz clic en REGISTRAR, con lo cual el sistema generará un número de control, que debes conservar para cualquier aclaración durante el proceso.\n\n"))
                 .next()
                 .moveTo(handleProcesoPreinscripcionPasos2);
 
         handleProcesoPreinscripcionPasos2
-                .body(context -> twilioPlatform.reply(context,"5- Realiza el pago en alguno de los lugares que se indican en la hoja de pago.\n \n"+
+                .body(context -> twilioPlatform.reply(context,"4- En el correo y/o mensaje que recibirás, se indica el número de ficha de preinscripción y la clave con los cuales puedes ingresar de nueva cuenta a la página de preinscripción y en la opción CONTINUAR imprimirás la hoja de pago de preinscripción, así como tu ficha de preinscripción. \n \n"+
+                        "5- Realiza el pago en alguno de los lugares que se indican en la hoja de pago.\n \n"+
                         "6- La ficha de preinscripción contiene un número y clave de acceso para que ingreses al portal de admisión http://dse.uasnet.mx/admision ingresar número de ficha y clave.\n \n"+
                         "7- Llenar la solicitud de preinscripción (con mayúsculas, sin acentos, sin comas. no abreviar, no omitir ningún nombre, ni apellido)."+
                         "8- Imprimir 2 veces la solicitud de preinscripción.\n \n"+
@@ -765,8 +826,8 @@ public class PosgradoBot {
                         .moveTo(estadoEspera);
 
                 handleOfrecerAyuda
-                        .body(context -> twilioPlatform.reply(context, "Si tienes alguna otra duda por favor házmela saber, Te agradeceríamos que nos ayudaras para responder una breve encuesta y compartirnos cómo fue tu experiencia y así poder mejorar. Gracias😊\n \n"+
-                        "Encuesta.com"))
+                        .body(context -> twilioPlatform.replyMedia(context, "Si tienes alguna otra duda por favor házmela saber, Te agradeceríamos que nos ayudaras para responder una breve encuesta y compartirnos cómo fue tu experiencia y así poder mejorar. Gracias😊\n \n"+
+                        "Encuesta.com","https://raw.githubusercontent.com/AngelTM/assetsPosgradoBot/b2b2cff31c7a6680ccc5511ef9e612ac2a016a81/Convocatoria-PCI-2022.jpg"))
                         .next()
                         .moveTo(estadoEspera);
 
@@ -780,8 +841,27 @@ public class PosgradoBot {
          * Note that every Xatkit bot needs a default fallback state.
          */
         val defaultFallback = fallbackState()
-                .body(context -> twilioPlatform.reply(context, "Perdón, no lo entiendo"));
-
+                .body(context ->{
+                        twilioPlatform.reply(context, "Perdón, no lo entiendo");
+                        String textoUsuario = context.getIntent().getMatchedInput();
+                        String promptMasTextoUsuario = promtDirecto + textoUsuario +"\nsugerencia:";
+                        String sugerenciaGuardar;
+                        storyArray.clear();
+                        CompletionRequest completionRequest = CompletionRequest.builder()
+                                .prompt(promptMasTextoUsuario)
+                                .echo(false)
+                                .maxTokens(96)
+                                .temperature(0.0)
+                                .stop(stopList)
+                                .build();
+                        service.createCompletion("text-curie-001", completionRequest).getChoices().forEach(line -> {storyArray.add(line.getText());System.out.println(line); });
+                        //System.out.println(promptMasTextoUsuario);
+                        //System.out.println(storyArray.get(0));
+                        twilioPlatform.reply(context, storyArray.get(0));
+                        sugerenciaGuardar = textoUsuario+"\n"+ storyArray.get(0);
+                        guardarFichero(sugerenciaGuardar);
+                });
+        
         /*
          * Creates the bot model that will be executed by the Xatkit engine.
          * <p>
@@ -809,23 +889,27 @@ public class PosgradoBot {
          * their values.
          */
        
-       //dialogFlow
-        
+
+        botConfiguration.addProperty("xatkit.twilio.username", "AC8b7130bbbe59b296cddea45f8c8ca1f0");
+        botConfiguration.addProperty("xatkit.twilio.auth.token", "0dd068b057dd6582c2c4394e797131c0");
+       
+
+        //dialogFlow
+             
         botConfiguration.addProperty(IntentRecognitionProviderFactory.INTENT_PROVIDER_KEY, DialogFlowConfiguration.DIALOGLFOW_INTENT_PROVIDER);
         botConfiguration.addProperty(DialogFlowConfiguration.PROJECT_ID_KEY, "pruebaxatkit-sipv");
         botConfiguration.addProperty(DialogFlowConfiguration.GOOGLE_CREDENTIALS_PATH_KEY, "xDialog.json");
         botConfiguration.addProperty(DialogFlowConfiguration.LANGUAGE_CODE_KEY, "es");
         botConfiguration.addProperty(DialogFlowConfiguration.CLEAN_AGENT_ON_STARTUP_KEY, true);  
         
-        botConfiguration.addProperty("xatkit.twilio.username", "AC8b7130bbbe59b296cddea45f8c8ca1f0");
-        botConfiguration.addProperty("xatkit.twilio.auth.token", "0dd068b057dd6582c2c4394e797131c0");
+
         /*
         //NLP.js
         botConfiguration.addProperty(IntentRecognitionProviderFactory.INTENT_PROVIDER_KEY, NlpjsConfiguration.NLPJS_INTENT_PROVIDER);
         botConfiguration.addProperty(NlpjsConfiguration.AGENT_ID_KEY, "default");
         botConfiguration.addProperty(NlpjsConfiguration.LANGUAGE_CODE_KEY, "es");
         botConfiguration.addProperty(NlpjsConfiguration.NLPJS_SERVER_KEY, "http://localhost:8080"); 
-        */
+    */
 
         XatkitBot xatkitBot = new XatkitBot(botModel, botConfiguration);
         xatkitBot.run();
@@ -834,4 +918,34 @@ public class PosgradoBot {
          * The logs of the bot are stored in the logs folder at the root of this project.
          */
     }
+
+    static void guardarFichero(String Sugerencia){
+        File archivo;
+        FileWriter escribir;
+        PrintWriter linea;
+        archivo = new File("c:/sugerencias.txt");
+        if(!archivo.exists()){
+            try {
+                archivo.createNewFile();
+                escribir = new FileWriter(archivo,true);
+                linea = new PrintWriter(archivo);
+                linea.println(Sugerencia);
+                linea.close();
+            } catch (Exception e) {
+                System.out.println(e);
+                System.out.println("ocurrio un error al guardar el archivo");
+            }
+        }else{
+            try {
+                System.out.println("guardado en archivo");
+                escribir = new FileWriter(archivo,true);
+                linea = new PrintWriter(archivo);
+                linea.println(Sugerencia);
+                linea.close();
+            } catch (Exception e) {
+                System.out.println("ocurrio un error al guardar el archivo");
+            }
+        }
+    }
 }
+

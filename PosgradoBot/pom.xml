@@ -46,12 +46,7 @@
             <artifactId>twilio-platform</artifactId>
             <version>3.0.1-SNAPSHOT</version>
         </dependency>
-        <!--openai platform-->
-        <dependency>
-            <groupId>com.xatkit</groupId>
-            <artifactId>openai-platform</artifactId>
-            <version>3.0.1-SNAPSHOT</version>
-        </dependency>
+
         
         <dependency>
             <groupId>com.xatkit</groupId>
@@ -62,7 +57,14 @@
             <groupId>com.xatkit</groupId>
             <artifactId>xatkit-nlpjs</artifactId>
             <version>0.0.1-SNAPSHOT</version>
-        </dependency>        
+        </dependency> 
+
+        <!--OpenAI GPT -->
+        <dependency>
+            <groupId>com.theokanning.openai-gpt3-java</groupId>
+            <artifactId>client</artifactId>
+            <version>0.6.0</version>
+        </dependency>       
         <!-- Utils -->
 
         <dependency>
