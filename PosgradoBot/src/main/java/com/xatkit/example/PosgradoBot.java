@@ -75,7 +75,7 @@ public class PosgradoBot {
         "¿Cómo te hicieron?\n"+
         "Cuál es la fecha del Curso propedéutico y examen de conocimientos\n"+
         "Instrucciones:\n"+
-        "pregunta al usuario la opción que puede interesarle de la Lista de opciones según el mensaje del usuario en la conversación de la misma forma que en el Ejemplo , solo puedes contestar con ejemplos de la Lista de opciones y debes realizar una sugerencia que tenga relación con el mensaje del usuario, la sugerencia debe ser siempre en español.\n"+
+        "pregunta al usuario la opción que puede interesarle de la Lista de opciones según el mensaje del usuario en la conversación de la misma forma que en el Ejemplo , solo puedes contestar con ejemplos de la Lista de opciones y debes realizar una sugerencia que tenga relación con el mensaje del usuario, la sugerencia debe ser siempre en español, si no puedes ofrecer una recomendacion acorde o util de la Lista de opciones responde con un 'lo siento no tengo una sugerencia para mostrar' ..\n"+
         "Ejemplo:\n"+
         "usuario: pero no tengo dinero\n"+
         "sugerencia: si te interesa puedes intentar escribir: Información sobre becas\n"+
@@ -83,16 +83,24 @@ public class PosgradoBot {
         "sugerencia: si te interesa puedes intentar escribir: ¿Que tengo que hacer para entrar al posgrado?\n"+
         "usuario: ¿me queda muy lejos?\n"+
         "sugerencia: si te interesa puedes intentar escribir: ¿Dónde están ubicados?\n"+
+        "usuario: es dificil hablar japones?\n"+
+        "lo siento no tengo una sugerencia para mostrar\n"+
         "usuario: esta muy caro?\n"+
         "sugerencia: si te interesa puedes intentar escribir: Información  sobre costos\n"+
         "usuario: is expensive?\n"+
         "sugerencia: si te interesa puedes intentar escribir: Información  sobre costos\n"+
         "usuario: Is it too far from my house?\n"+
         "sugerencia: si te interesa puedes intentar escribir: ¿Dónde están ubicados?\n"+
+        "usuario: quiero escuchar musica\n"+
+        "lo siento no tengo una sugerencia para mostrar\n"+
         "usuario: estoy aburrido\n"+
         "sugerencia: si te interesa puedes intentar escribir: Información sobre movilidad\n"+
         "usuario: I don't know what to do\n"+
         "sugerencia: si te interesa puedes intentar escribir: Información  general\n"+
+        "usuario: te quiero\n"+
+        "lo siento no tengo una sugerencia para mostrar\n"+
+        "usuario: ¿que pasa si no puedo ir a hacer el examen?\n"+
+        "sugerencia: si te interesa puedes intentar escribir: información sobre la modalidad de los examenes\n"+
         "Conversación:\n"+
         "usuario:"; 
         ArrayList<String> stopList = new ArrayList<String>();
@@ -155,11 +163,11 @@ public class PosgradoBot {
                 .trainingSentence("para que se creo este posgrado");
 
         val perfilEgreso = intent("perfilEgreso")
-                .trainingSentence("Cual es el perfil de egreso de un alumno de PROGRAMA")
-                .trainingSentence("que obtengo al estudiar el PROGRAMA")
-                .trainingSentence("De que me sirve estudiar el PROGRAMA")
-                .trainingSentence("como sale un egresado de PROGRAMA")
-                .parameter("PPROGRAMA").fromFragment("PROGRAMA").entity(ePrograma);
+                .trainingSentence("Cual es el perfil de egreso de un alumno de maestria")
+                .trainingSentence("que obtengo al estudiar el maestria")
+                .trainingSentence("De que me sirve estudiar el maestria")
+                .trainingSentence("como sale un egresado de maestria")
+                .parameter("PPROGRAMA").fromFragment("maestria").entity(ePrograma);
 
         val duracionPosgrado = intent("duracionPosgrado")
                 .trainingSentence("información sobre duración del programa de posgrado")
@@ -169,11 +177,11 @@ public class PosgradoBot {
 
         //proceso de inscripcion y requisitos 
         val requisitos = intent("requisitos")
-                .trainingSentence("cuáles son los requisitos para ingresar a PROGRAMA?")
+                .trainingSentence("cuáles son los requisitos para ingresar a maestria?")
                 .trainingSentence("¿Cuáles son los requisitos para entrar?")
-                .trainingSentence("Que necesito para entrar a PROGRAMA?")
-                .trainingSentence("Cuales son los requisitos previos para ingresar a PROGRAMA?")
-                .parameter("PPROGRAMA").fromFragment("PROGRAMA").entity(ePrograma);//debes completar el proceso de preinscripcion ademas necesitaras lo siguiente:
+                .trainingSentence("Que necesito para entrar a maestria?")
+                .trainingSentence("Cuales son los requisitos previos para ingresar a maestria?")
+                .parameter("PPROGRAMA").fromFragment("maestria").entity(ePrograma);//debes completar el proceso de preinscripcion ademas necesitaras lo siguiente:
 
         val procesoPreinscripcion = intent("procesoPreinscripcion")
                 .trainingSentence("Información sobre proceso de preinscripción.")
@@ -294,12 +302,12 @@ public class PosgradoBot {
                 
 
         val planEstudios  = intent("planEstudios")
-                .trainingSentence("Cual es el plan de estudios del MDPROGRAMA")
-                .trainingSentence("Cuántas optativas tiene el MDPROGRAMA")
-                .trainingSentence("Que materias llevan en el MDPROGRAMA")
-                .trainingSentence("cuales son las materias del MDPROGRAMA")
-                .trainingSentence("Cual es el plan de estudios del programa de MDPROGRAMA")
-                .parameter("PPROGRAMA").fromFragment("MDPROGRAMA").entity(ePrograma);
+                .trainingSentence("Cual es el plan de estudios del doctorado")
+                .trainingSentence("Cuántas optativas tiene el doctorado")
+                .trainingSentence("Que materias llevan en el doctorado")
+                .trainingSentence("cuales son las materias del doctorado")
+                .trainingSentence("Cual es el plan de estudios del programa de doctorado")
+                .parameter("PPROGRAMA").fromFragment("doctorado").entity(ePrograma);
 
         val docentes   = intent("docentes")
                 .trainingSentence("información sobre los docentes")
@@ -653,6 +661,24 @@ public class PosgradoBot {
                                 "• Identificación oficial con fotografía.\n \n"+
                                 "• Presentar título de Licenciatura.\n \n"+
                                 "• En caso de no contar con el título, presentar documento probatorio de trámite.\n \n");
+                                twilioPlatform.reply(context, "Doctorado:\n\n"+
+                                "• solicitud de admisión. https://pci.uas.edu.mx/wp-content/uploads/2022/03/Solicitud_de_Ingreso.pdf \n \n"+ 
+                                "• Identificación oficial con fotografía.\n \n"+
+                                "• Presentar una propuesta de investigación de acuerdo a las líneas de investigación consideradas en el Programa de Doctorado: https://pci.uas.edu.mx/wp-content/uploads/2022/03/Guia-Protocolo.pdf\n \n"+
+                                "• Presentar el examen Examen TOEFL ITP a criterio del H. Comité Académico de Admisión.\n \n"+
+                                "• Presentar Examen Ceneval Exani III.\n \n"+
+                                "• Presentar título de Maestría.\n \n"+
+                                "• Aprobar el examen general de conocimiento\n \n"+
+                                "• Computación y Sistemas: https://pci.uas.edu.mx/wp-content/uploads/2022/03/opcion-terminal-de-computacion-y-sistemas.pdf\n \n"+
+                                "• Geodesia y Geomática: https://pci.uas.edu.mx/wp-content/uploads/2022/03/opcion-terminal-de-geomatica.pdf \n \n"+
+                                "• Carta de presentación personal en la que se explique el interés que motiva su ingreso al programa.\n \n"+
+                                "• Certificado de Maestría con un promedio mínimo de 8\n \n"+
+                                "• Currículum Vitae acompañado de documentos probatorios.\n \n"+
+                                "• Dos cartas de recomendación académica de su Institución de origen. https://pci.uas.edu.mx/wp-content/uploads/2022/03/Carta-de-recomendacion.pdf \n \n"+
+                                "• Someterse a un proceso de admisión que defina su ingreso o no al Programa de Doctorado en Ciencias de la Información.\n \n"+
+                                "• Aprobar examen del idioma español en el Centro de Idiomas de las UAS, cuando el aspirante proceda de un país en el que no sea dominante de ese idioma.\n \n"+
+                                "• Entrevista con miembros del H. Comité Académico de Admisión.\n \n"+
+                                "• Presentar carta compromiso de dedicación de tiempo completo a sus estudios.");
                         }
                 })
                 .next()
@@ -884,7 +910,7 @@ public class PosgradoBot {
          */
         val defaultFallback = fallbackState()
                 .body(context ->{
-                        twilioPlatform.reply(context, "Perdón, no lo entiendo");
+                        twilioPlatform.reply(context, "Perdón, no lo entiendo o no estoy capacitado para responder esa pregunta");
                         String textoUsuario = context.getIntent().getMatchedInput();
                         String promptMasTextoUsuario = promtDirecto + textoUsuario +"\nsugerencia:";
                         String sugerenciaGuardar;
@@ -941,14 +967,14 @@ public class PosgradoBot {
        
 
         //dialogFlow
-        /*
+        
         botConfiguration.addProperty(IntentRecognitionProviderFactory.INTENT_PROVIDER_KEY, DialogFlowConfiguration.DIALOGLFOW_INTENT_PROVIDER);
         botConfiguration.addProperty(DialogFlowConfiguration.PROJECT_ID_KEY, "pruebaxatkit-sipv");
         botConfiguration.addProperty(DialogFlowConfiguration.GOOGLE_CREDENTIALS_PATH_KEY, "xDialog.json");
         botConfiguration.addProperty(DialogFlowConfiguration.LANGUAGE_CODE_KEY, "es");
         botConfiguration.addProperty(DialogFlowConfiguration.CLEAN_AGENT_ON_STARTUP_KEY, true);  
         
-*/
+/*
         
         //NLP.js
         
@@ -957,7 +983,7 @@ public class PosgradoBot {
         botConfiguration.addProperty(NlpjsConfiguration.LANGUAGE_CODE_KEY, "es");
         botConfiguration.addProperty(NlpjsConfiguration.NLPJS_SERVER_KEY, "http://localhost:8080"); 
         
-
+*/
         XatkitBot xatkitBot = new XatkitBot(botModel, botConfiguration);
         xatkitBot.run();
         /*
@@ -970,7 +996,7 @@ public class PosgradoBot {
         File archivo;
         FileWriter escribir;
         PrintWriter linea;
-        archivo = new File("c:/sugerencias.txt");
+        archivo = new File("/root/recomendacionesLog/sugerencias.txt");
         if(!archivo.exists()){
             try {
                 archivo.createNewFile();
@@ -978,18 +1004,18 @@ public class PosgradoBot {
                 linea = new PrintWriter(archivo);
                 linea.println(Sugerencia);
                 linea.close();
-            } catch (Exception e) {
+                System.out.println("guardado en archivo");
+            } catch (IOException e) {
                 System.out.println(e);
                 System.out.println("ocurrio un error al guardar el archivo");
             }
         }else{
             try {
-                System.out.println("guardado en archivo");
                 escribir = new FileWriter(archivo,true);
                 linea = new PrintWriter(archivo);
                 linea.println(Sugerencia);
                 linea.close();
-            } catch (Exception e) {
+            } catch (IOException e) {
                 System.out.println("ocurrio un error al guardar el archivo");
             }
         }
