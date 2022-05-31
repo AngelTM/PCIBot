@@ -13440,3 +13440,226 @@ Intent Parameters: {PPROGRAMA="doctorado"}
 	at java.lang.Thread.run(Thread.java:748)
 
 2022-05-31 15:47:09 INFO  Action Reply executed in 200 ms
+2022-05-31 16:09:22 INFO  Starting XatkitBot with configuration:
+xatkit.twilio.username=AC8b7130bbbe59b296cddea45f8c8ca1f0
+xatkit.twilio.auth.token=0dd068b057dd6582c2c4394e797131c0
+xatkit.intent.provider=com.xatkit.core.recognition.nlpjs.NlpjsIntentRecognitionProvider
+xatkit.nlpjs.agentId=default
+xatkit.nlpjs.language=es
+xatkit.nlpjs.server=http://localhost:8080
+sun.cpu.isalist=amd64
+sun.desktop=windows
+sun.io.unicode.encoding=UnicodeLittle
+sun.cpu.endian=little
+java.vendor.url.bug=http://bugreport.sun.com/bugreport/
+file.separator=\
+maven.home=C:\Program Files\apache-maven-3.6.3
+java.vendor=Oracle Corporation
+sun.boot.class.path=C:\Program Files\Java\jdk1.8.0_281\jre\lib\resources.jar;C:\Program Files\Java\jdk1.8.0_281\jre\lib\rt.jar;C:\Program Files\Java\jdk1.8.0_281\jre\lib\sunrsasign.jar;C:\Program Files\Java\jdk1.8.0_281\jre\lib\jsse.jar;C:\Program Files\Java\jdk1.8.0_281\jre\lib\jce.jar;C:\Program Files\Java\jdk1.8.0_281\jre\lib\charsets.jar;C:\Program Files\Java\jdk1.8.0_281\jre\lib\jfr.jar;C:\Program Files\Java\jdk1.8.0_281\jre\classes
+java.ext.dirs=C:\Program Files\Java\jdk1.8.0_281\jre\lib\ext;C:\WINDOWS\Sun\Java\lib\ext
+java.version=1.8.0_281
+java.vm.info=mixed mode
+awt.toolkit=sun.awt.windows.WToolkit
+user.language=es
+java.specification.vendor=Oracle Corporation
+sun.java.command=org.codehaus.plexus.classworlds.launcher.Launcher exec:java -Dexec.mainClass=com.xatkit.example.PosgradoBot
+java.home=C:\Program Files\Java\jdk1.8.0_281\jre
+sun.arch.data.model=64
+java.vm.specification.version=1.8
+java.class.path=C:/Program Files/apache-maven-3.6.3/boot/plexus-classworlds-2.6.0.jar
+user.name=Angel
+file.encoding=Cp1252
+java.specification.version=1.8
+java.awt.printerjob=sun.awt.windows.WPrinterJob
+user.timezone=America/Chihuahua
+user.home=C:\Users\Angel
+library.jansi.path=C:/Program Files/apache-maven-3.6.3/lib/jansi-native
+os.version=10.0
+sun.management.compiler=HotSpot 64-Bit Tiered Compilers
+java.specification.name=Java Platform API Specification
+java.class.version=52.0
+maven.conf=C:/Program Files/apache-maven-3.6.3/conf
+java.library.path=C:\Program Files\Java\jdk1.8.0_281\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\Users\Angel\bin;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\local\bin;C:\Program Files\Git\usr\bin;C:\Program Files\Git\usr\bin;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\bin;C:\Users\Angel\bin;C:\Program Files\Common Files\Oracle\Java\javapath;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0;C:\Windows\System32\OpenSSH;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\NVIDIA Corporation\NVIDIA NvDLISR;C:\ProgramData\chocolatey\bin;C:\Program Files\CodeBlocks\MinGW\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0;C:\WINDOWS\System32\OpenSSH;C:\Program Files\Docker\Docker\resources\bin;C:\ProgramData\DockerDesktop\version-bin;C:\Gradle\gradle-7.4.1\bin;C:\Program Files\Git\cmd;C:\Program Files\nodejs;C:\Users\Angel\AppData\Local\Microsoft\WindowsApps;C:\Users\Angel\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\Angel\AppData\Local\GitHubDesktop\bin;C:\Users\Angel\AppData\Local\Programs\MiKTeX\miktex\bin\x64;C:\Users\Angel\AppData\Local\Programs\Python\Python39\python.exe;C:\Program Files\apache-maven-3.6.3\bin;C:\Program Files\Java\jdk1.8.0_281;C:\Users\Angel\AppData\Roaming\npm;C:\Program Files\Git\usr\bin\vendor_perl;C:\Program Files\Git\usr\bin\core_perl;.
+sun.jnu.encoding=Cp1252
+classworlds.conf=C:/Program Files/apache-maven-3.6.3/bin/m2.conf
+os.name=Windows 10
+user.variant=
+java.vm.specification.vendor=Oracle Corporation
+java.io.tmpdir=C:\Users\Angel\AppData\Local\Temp\
+line.separator=
+
+java.endorsed.dirs=C:\Program Files\Java\jdk1.8.0_281\jre\lib\endorsed
+os.arch=amd64
+java.awt.graphicsenv=sun.awt.Win32GraphicsEnvironment
+java.runtime.version=1.8.0_281-b09
+java.vm.specification.name=Java Virtual Machine Specification
+user.dir=C:\Users\Angel\Desktop\xatkit\xatkit\xatkit-examples\PosgradoBot
+user.country=MX
+user.script=
+sun.java.launcher=SUN_STANDARD
+sun.os.patch.level=
+java.vm.name=Java HotSpot(TM) 64-Bit Server VM
+file.encoding.pkg=sun.io
+guice.disable.misplaced.annotation.check=true
+path.separator=;
+maven.multiModuleProjectDirectory=C:/Users/Angel/Desktop/xatkit/xatkit/xatkit-examples/PosgradoBot
+java.vm.vendor=Oracle Corporation
+java.vendor.url=http://java.oracle.com/
+exec.mainClass=com.xatkit.example.PosgradoBot
+sun.boot.library.path=C:\Program Files\Java\jdk1.8.0_281\jre\bin
+java.vm.version=25.281-b09
+java.runtime.name=Java(TM) SE Runtime Environment
+2022-05-31 16:09:22 INFO  Starting NLP.js Client
+2022-05-31 16:09:22 INFO  Starting TwilioEventProvider
+2022-05-31 16:09:22 INFO  Registering TwilioEventProvider in the XatkitServer
+2022-05-31 16:09:22 INFO  Registered REST handler TwilioRestHandler at URI /twilio (method=POST)
+2022-05-31 16:09:22 INFO  Registering execution rule events
+2022-05-31 16:09:23 INFO  Starting NLP.js agent training (this may take a few minutes)
+2022-05-31 16:09:25 INFO  NLP.js agent trained.
+2022-05-31 16:09:25 INFO  Starting XatkitServer
+2022-05-31 16:09:25 INFO  Registered REST handler  at URI /status (method=GET)
+2022-05-31 16:09:25 INFO  XatkitServer started, listening on port 5,000
+2022-05-31 16:09:25 INFO  Xatkit bot started
+2022-05-31 16:09:42 WARN  Unknown query content encoding
+2022-05-31 16:09:42 INFO  Detected Intent requisitos (confidence 0.609) from query text "cuales son los requisitos de doctorado ?"
+Intent Parameters: {PPROGRAMA="doctorado"}
+2022-05-31 16:09:44 INFO  Action Reply executed in 1,960 ms
+2022-05-31 16:10:02 WARN  Unknown query content encoding
+2022-05-31 16:10:02 INFO  Detected Intent planEstudios (confidence 0.815) from query text "plan de estudios maestria"
+Intent Parameters: {PPROGRAMA="maestria"}
+2022-05-31 16:10:03 INFO  Action ReplyMedia executed in 267 ms
+2022-05-31 16:10:11 WARN  Unknown query content encoding
+2022-05-31 16:10:11 INFO  Detected Intent planEstudios (confidence 0.92) from query text "optativas maestria"
+Intent Parameters: {PPROGRAMA="maestria"}
+2022-05-31 16:10:11 INFO  Action ReplyMedia executed in 209 ms
+2022-05-31 16:11:11 WARN  Unknown query content encoding
+2022-05-31 16:11:11 INFO  Detected Intent Default_Fallback_Intent (confidence 1) from query text "plan de estudios de mstria"
+2022-05-31 16:11:11 ERROR An error occurred when executing the action Reply
+2022-05-31 16:11:11 ERROR com.twilio.exception.ApiException: api.twilio.com:443 failed to respond
+	at com.twilio.http.NetworkHttpClient.makeRequest(NetworkHttpClient.java:140)
+	at com.twilio.http.HttpClient.reliableRequest(HttpClient.java:42)
+	at com.twilio.http.HttpClient.reliableRequest(HttpClient.java:25)
+	at com.twilio.http.TwilioRestClient.request(TwilioRestClient.java:50)
+	at com.twilio.rest.api.v2010.account.MessageCreator.create(MessageCreator.java:500)
+	at com.twilio.rest.api.v2010.account.MessageCreator.create(MessageCreator.java:25)
+	at com.twilio.base.Creator.create(Creator.java:45)
+	at com.xatkit.plugins.twilio.platform.action.Reply.compute(Reply.java:59)
+	at com.xatkit.core.platform.action.RuntimeAction.call(RuntimeAction.java:81)
+	at com.xatkit.plugins.twilio.platform.TwilioPlatform.reply(TwilioPlatform.java:105)
+	at com.xatkit.example.PosgradoBot.lambda$main$40(PosgradoBot.java:887)
+	at com.xatkit.core.ExecutionService.executeBody(ExecutionService.java:104)
+	at com.xatkit.core.ExecutionService.executeFallback(ExecutionService.java:148)
+	at com.xatkit.core.ExecutionService.lambda$handleEventInstance$0(ExecutionService.java:245)
+	at java.util.concurrent.CompletableFuture$AsyncRun.run(CompletableFuture.java:1640)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+Caused by: org.apache.http.NoHttpResponseException: api.twilio.com:443 failed to respond
+	at org.apache.http.impl.conn.DefaultHttpResponseParser.parseHead(DefaultHttpResponseParser.java:143)
+	at org.apache.http.impl.conn.DefaultHttpResponseParser.parseHead(DefaultHttpResponseParser.java:57)
+	at org.apache.http.impl.io.AbstractMessageParser.parse(AbstractMessageParser.java:259)
+	at org.apache.http.impl.DefaultBHttpClientConnection.receiveResponseHeader(DefaultBHttpClientConnection.java:163)
+	at org.apache.http.impl.conn.CPoolProxy.receiveResponseHeader(CPoolProxy.java:167)
+	at org.apache.http.protocol.HttpRequestExecutor.doReceiveResponse(HttpRequestExecutor.java:273)
+	at org.apache.http.protocol.HttpRequestExecutor.execute(HttpRequestExecutor.java:125)
+	at org.apache.http.impl.execchain.MainClientExec.execute(MainClientExec.java:271)
+	at org.apache.http.impl.execchain.ProtocolExec.execute(ProtocolExec.java:184)
+	at org.apache.http.impl.execchain.RetryExec.execute(RetryExec.java:88)
+	at org.apache.http.impl.execchain.RedirectExec.execute(RedirectExec.java:110)
+	at org.apache.http.impl.client.InternalHttpClient.doExecute(InternalHttpClient.java:184)
+	at org.apache.http.impl.client.CloseableHttpClient.execute(CloseableHttpClient.java:82)
+	at org.apache.http.impl.client.CloseableHttpClient.execute(CloseableHttpClient.java:107)
+	at org.apache.http.impl.client.CloseableHttpClient.execute(CloseableHttpClient.java:55)
+	at com.twilio.http.NetworkHttpClient.makeRequest(NetworkHttpClient.java:131)
+	... 17 more
+
+2022-05-31 16:11:11 INFO  Action Reply executed in 46 ms
+2022-05-31 16:11:14 INFO  Action Reply executed in 523 ms
+2022-05-31 16:13:25 WARN  Unknown query content encoding
+2022-05-31 16:13:25 INFO  Detected Intent Default_Fallback_Intent (confidence 0.977) from query text "se encuentra muy lejos de mi casa ?"
+2022-05-31 16:13:25 INFO  Action Reply executed in 563 ms
+2022-05-31 16:13:27 INFO  Action Reply executed in 204 ms
+2022-05-31 16:18:59 INFO  Starting XatkitBot with configuration:
+xatkit.twilio.username=AC8b7130bbbe59b296cddea45f8c8ca1f0
+xatkit.twilio.auth.token=0dd068b057dd6582c2c4394e797131c0
+xatkit.intent.provider=com.xatkit.core.recognition.nlpjs.NlpjsIntentRecognitionProvider
+xatkit.nlpjs.agentId=default
+xatkit.nlpjs.language=es
+xatkit.nlpjs.server=http://localhost:8080
+sun.cpu.isalist=amd64
+sun.desktop=windows
+sun.io.unicode.encoding=UnicodeLittle
+sun.cpu.endian=little
+java.vendor.url.bug=http://bugreport.sun.com/bugreport/
+file.separator=\
+maven.home=C:\Program Files\apache-maven-3.6.3
+java.vendor=Oracle Corporation
+sun.boot.class.path=C:\Program Files\Java\jdk1.8.0_281\jre\lib\resources.jar;C:\Program Files\Java\jdk1.8.0_281\jre\lib\rt.jar;C:\Program Files\Java\jdk1.8.0_281\jre\lib\sunrsasign.jar;C:\Program Files\Java\jdk1.8.0_281\jre\lib\jsse.jar;C:\Program Files\Java\jdk1.8.0_281\jre\lib\jce.jar;C:\Program Files\Java\jdk1.8.0_281\jre\lib\charsets.jar;C:\Program Files\Java\jdk1.8.0_281\jre\lib\jfr.jar;C:\Program Files\Java\jdk1.8.0_281\jre\classes
+java.ext.dirs=C:\Program Files\Java\jdk1.8.0_281\jre\lib\ext;C:\WINDOWS\Sun\Java\lib\ext
+java.version=1.8.0_281
+java.vm.info=mixed mode
+awt.toolkit=sun.awt.windows.WToolkit
+user.language=es
+java.specification.vendor=Oracle Corporation
+sun.java.command=org.codehaus.plexus.classworlds.launcher.Launcher exec:java -Dexec.mainClass=com.xatkit.example.PosgradoBot
+java.home=C:\Program Files\Java\jdk1.8.0_281\jre
+sun.arch.data.model=64
+java.vm.specification.version=1.8
+java.class.path=C:/Program Files/apache-maven-3.6.3/boot/plexus-classworlds-2.6.0.jar
+user.name=Angel
+file.encoding=Cp1252
+java.specification.version=1.8
+java.awt.printerjob=sun.awt.windows.WPrinterJob
+user.timezone=America/Chihuahua
+user.home=C:\Users\Angel
+library.jansi.path=C:/Program Files/apache-maven-3.6.3/lib/jansi-native
+os.version=10.0
+sun.management.compiler=HotSpot 64-Bit Tiered Compilers
+java.specification.name=Java Platform API Specification
+java.class.version=52.0
+maven.conf=C:/Program Files/apache-maven-3.6.3/conf
+java.library.path=C:\Program Files\Java\jdk1.8.0_281\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\Users\Angel\bin;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\local\bin;C:\Program Files\Git\usr\bin;C:\Program Files\Git\usr\bin;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\bin;C:\Users\Angel\bin;C:\Program Files\Common Files\Oracle\Java\javapath;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0;C:\Windows\System32\OpenSSH;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\NVIDIA Corporation\NVIDIA NvDLISR;C:\ProgramData\chocolatey\bin;C:\Program Files\CodeBlocks\MinGW\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0;C:\WINDOWS\System32\OpenSSH;C:\Program Files\Docker\Docker\resources\bin;C:\ProgramData\DockerDesktop\version-bin;C:\Gradle\gradle-7.4.1\bin;C:\Program Files\Git\cmd;C:\Program Files\nodejs;C:\Users\Angel\AppData\Local\Microsoft\WindowsApps;C:\Users\Angel\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\Angel\AppData\Local\GitHubDesktop\bin;C:\Users\Angel\AppData\Local\Programs\MiKTeX\miktex\bin\x64;C:\Users\Angel\AppData\Local\Programs\Python\Python39\python.exe;C:\Program Files\apache-maven-3.6.3\bin;C:\Program Files\Java\jdk1.8.0_281;C:\Users\Angel\AppData\Roaming\npm;C:\Program Files\Git\usr\bin\vendor_perl;C:\Program Files\Git\usr\bin\core_perl;.
+sun.jnu.encoding=Cp1252
+classworlds.conf=C:/Program Files/apache-maven-3.6.3/bin/m2.conf
+os.name=Windows 10
+user.variant=
+java.vm.specification.vendor=Oracle Corporation
+java.io.tmpdir=C:\Users\Angel\AppData\Local\Temp\
+line.separator=
+
+java.endorsed.dirs=C:\Program Files\Java\jdk1.8.0_281\jre\lib\endorsed
+os.arch=amd64
+java.awt.graphicsenv=sun.awt.Win32GraphicsEnvironment
+java.runtime.version=1.8.0_281-b09
+java.vm.specification.name=Java Virtual Machine Specification
+user.dir=C:\Users\Angel\Desktop\xatkit\xatkit\xatkit-examples\PosgradoBot
+user.country=MX
+user.script=
+sun.java.launcher=SUN_STANDARD
+sun.os.patch.level=
+java.vm.name=Java HotSpot(TM) 64-Bit Server VM
+file.encoding.pkg=sun.io
+guice.disable.misplaced.annotation.check=true
+path.separator=;
+maven.multiModuleProjectDirectory=C:/Users/Angel/Desktop/xatkit/xatkit/xatkit-examples/PosgradoBot
+java.vm.vendor=Oracle Corporation
+java.vendor.url=http://java.oracle.com/
+exec.mainClass=com.xatkit.example.PosgradoBot
+sun.boot.library.path=C:\Program Files\Java\jdk1.8.0_281\jre\bin
+java.vm.version=25.281-b09
+java.runtime.name=Java(TM) SE Runtime Environment
+2022-05-31 16:18:59 INFO  Starting NLP.js Client
+2022-05-31 16:18:59 INFO  Starting TwilioEventProvider
+2022-05-31 16:18:59 INFO  Registering TwilioEventProvider in the XatkitServer
+2022-05-31 16:18:59 INFO  Registered REST handler TwilioRestHandler at URI /twilio (method=POST)
+2022-05-31 16:18:59 INFO  Registering execution rule events
+2022-05-31 16:19:00 INFO  Starting NLP.js agent training (this may take a few minutes)
+2022-05-31 16:19:02 INFO  NLP.js agent trained.
+2022-05-31 16:19:02 INFO  Starting XatkitServer
+2022-05-31 16:19:02 INFO  Registered REST handler  at URI /status (method=GET)
+2022-05-31 16:19:02 INFO  XatkitServer started, listening on port 5,000
+2022-05-31 16:19:02 INFO  Xatkit bot started
+2022-05-31 16:19:13 WARN  Unknown query content encoding
+2022-05-31 16:19:13 INFO  Detected Intent Default_Fallback_Intent (confidence 0.995) from query text "ta muy lejos de mi casa ?"
+2022-05-31 16:19:14 INFO  Action Reply executed in 865 ms
+2022-05-31 16:19:15 INFO  Action Reply executed in 308 ms

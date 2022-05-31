@@ -899,9 +899,13 @@ public class PosgradoBot {
                         service.createCompletion("text-curie-001", completionRequest).getChoices().forEach(line -> {storyArray.add(line.getText());System.out.println(line); });
                         //      System.out.println(promptMasTextoUsuario);
                         //System.out.println(storyArray.get(0));
-                        twilioPlatform.reply(context, storyArray.get(0));
-                        sugerenciaGuardar = textoUsuario+"\n"+ storyArray.get(0);
-                        guardarFichero(sugerenciaGuardar);
+                        if(storyArray.get(0).length()>30){
+                                twilioPlatform.reply(context, storyArray.get(0));
+                                sugerenciaGuardar = textoUsuario+"\n"+ storyArray.get(0);
+                                guardarFichero(sugerenciaGuardar);
+                        }
+                        
+                        
                 });
         
         /*
