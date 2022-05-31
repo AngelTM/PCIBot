@@ -77,6 +77,8 @@ public class PosgradoBot {
         "Instrucciones:\n"+
         "pregunta al usuario la opción que puede interesarle de la Lista de opciones según el mensaje del usuario en la conversación de la misma forma que en el Ejemplo , solo puedes contestar con ejemplos de la Lista de opciones y debes realizar una sugerencia que tenga relación con el mensaje del usuario, la sugerencia debe ser siempre en español, si no puedes ofrecer una recomendacion acorde o util de la Lista de opciones responde con un 'lo siento no tengo una sugerencia para mostrar' ..\n"+
         "Ejemplo:\n"+
+        "usuario: ¿da clases el profe Carlos?\n"+
+        "sugerencia: si te interesa puedes intentar escribir: Información sobre los docentes\n"+
         "usuario: pero no tengo dinero\n"+
         "sugerencia: si te interesa puedes intentar escribir: Información sobre becas\n"+
         "usuario: no entendí que tengo que hacer\n"+
@@ -92,6 +94,8 @@ public class PosgradoBot {
         "usuario: Is it too far from my house?\n"+
         "sugerencia: si te interesa puedes intentar escribir: ¿Dónde están ubicados?\n"+
         "usuario: quiero escuchar musica\n"+
+        "lo siento no tengo una sugerencia para mostrar\n"+
+        "usuario: te quiero\n"+
         "lo siento no tengo una sugerencia para mostrar\n"+
         "usuario: estoy aburrido\n"+
         "sugerencia: si te interesa puedes intentar escribir: Información sobre movilidad\n"+
@@ -993,32 +997,33 @@ public class PosgradoBot {
     }
 
     static void guardarFichero(String Sugerencia){
-        File archivo;
-        FileWriter escribir;
-        PrintWriter linea;
-        archivo = new File("/root/recomendacionesLog/sugerencias.txt");
-        if(!archivo.exists()){
-            try {
-                archivo.createNewFile();
-                escribir = new FileWriter(archivo,true);
-                linea = new PrintWriter(archivo);
-                linea.println(Sugerencia);
-                linea.close();
-                System.out.println("guardado en archivo");
-            } catch (IOException e) {
-                System.out.println(e);
-                System.out.println("ocurrio un error al guardar el archivo");
+        BufferedWriter bw = null;
+        FileWriter fw = null;
+        try {
+            File file = new File("/root/recomendacionesLog/sugerencias.txt");
+            // Si el archivo no existe, se crea!
+            if (!file.exists()) {
+                file.createNewFile();
             }
-        }else{
+            // flag true, indica adjuntar información al archivo.
+            fw = new FileWriter(file.getAbsoluteFile(), true);
+            bw = new BufferedWriter(fw);
+            bw.write(Sugerencia);
+            System.out.println("Archivo Guardado");
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
             try {
-                escribir = new FileWriter(archivo,true);
-                linea = new PrintWriter(archivo);
-                linea.println(Sugerencia);
-                linea.close();
-            } catch (IOException e) {
-                System.out.println("ocurrio un error al guardar el archivo");
+                //Cierra instancias de FileWriter y BufferedWriter
+                if (bw != null)
+                    bw.close();
+                if (fw != null)
+                    fw.close();
+            } catch (IOException ex) {
+                ex.printStackTrace();
             }
         }
+        
     }
 }
 
