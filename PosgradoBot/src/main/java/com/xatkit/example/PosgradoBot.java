@@ -13,6 +13,7 @@ import static com.xatkit.dsl.DSL.intent;
 import static com.xatkit.dsl.DSL.intentIs;
 import static com.xatkit.dsl.DSL.model;
 import static com.xatkit.dsl.DSL.state;
+import static com.xatkit.dsl.DSL.mapping;
 import static com.xatkit.dsl.DSL.any;
 import com.xatkit.core.recognition.IntentRecognitionProviderFactory;
 import com.xatkit.core.recognition.dialogflow.DialogFlowIntentRecognitionProvider;
@@ -63,6 +64,7 @@ public class PosgradoBot {
         "Información sobre entrevista\n"+
         "¿Cuándo obtengo los resultados de admisión?\n"+
         "Información sobre becas\n"+
+        "¿cual es el proceso de titulacion? \n"+
         "¿Que tengo que hacer para entrar al posgrado?\n"+
         "Información sobre proceso de preinscripción.\n"+
         "Cuáles son los requisitos para ingresar a maestría?\n"+
@@ -96,6 +98,16 @@ public class PosgradoBot {
         ArrayList<String> stopList = new ArrayList<String>();
         stopList.add("sugerencia:");
         stopList.add("\n");
+        //definicion de entidades
+        
+        
+        val ePrograma = mapping("PPROGRAMA")
+        .entry()
+                .value("maestria").synonym("master")
+        .entry()
+                .value("doctorado")
+                        .synonym("DOC");
+
         /*
          * Define the intents our bot will react to.
          * Note that we recommend the usage of Lombok's val when using the Xatkit DSL: the fluent API defines many
@@ -147,7 +159,7 @@ public class PosgradoBot {
                 .trainingSentence("que obtengo al estudiar el PROGRAMA")
                 .trainingSentence("De que me sirve estudiar el PROGRAMA")
                 .trainingSentence("como sale un egresado de PROGRAMA")
-                .parameter("nombrePrograma").fromFragment("PROGRAMA").entity(any());
+                .parameter("PPROGRAMA").fromFragment("PROGRAMA").entity(ePrograma);
 
         val duracionPosgrado = intent("duracionPosgrado")
                 .trainingSentence("información sobre duración del programa de posgrado")
@@ -158,10 +170,10 @@ public class PosgradoBot {
         //proceso de inscripcion y requisitos 
         val requisitos = intent("requisitos")
                 .trainingSentence("cuáles son los requisitos para ingresar a PROGRAMA?")
+                .trainingSentence("¿Cuáles son los requisitos para entrar?")
                 .trainingSentence("Que necesito para entrar a PROGRAMA?")
                 .trainingSentence("Cuales son los requisitos previos para ingresar a PROGRAMA?")
-                .parameter("nombrePrograma").fromFragment("PROGRAMA").entity(any());//debes completar el proceso de preinscripcion ademas necesitaras lo siguiente:
-
+                .parameter("PPROGRAMA").fromFragment("PROGRAMA").entity(ePrograma);//debes completar el proceso de preinscripcion ademas necesitaras lo siguiente:
 
         val procesoPreinscripcion = intent("procesoPreinscripcion")
                 .trainingSentence("Información sobre proceso de preinscripción.")
@@ -177,6 +189,7 @@ public class PosgradoBot {
                 .trainingSentence("Que tengo que hacer para entrar al posgrado")
                 .trainingSentence("Quiero entrar al posgrado")
                 .trainingSentence("Como entrego los documentos?")
+                .trainingSentence("¿A donde envío los documentos?")
                 .trainingSentence("Como realizo la entrega de documentos de admisión")
                 .trainingSentence("en que consiste el proceso de admision?");
                 
@@ -185,8 +198,8 @@ public class PosgradoBot {
         val procesoInscripcion = intent("procesoInscripcion")           //avisar que te tienes que preinscribir //dependiendo del desempeño cambiar los dos intents de proceso por uno solo con entidades
                 .trainingSentence("Información sobre proceso de inscripción.")
                 .trainingSentence("Información sobre inscripción")
-                .trainingSentence("requisitos de inscripcion")
                 .trainingSentence("Cuando son las inscripciones?")
+                .trainingSentence("Cuando inician las inscripciones del doctorado?")
                 .trainingSentence("como puedo inscribirme?");
 
         val costosProcesosBecas = intent("costosProcesosBecas")
@@ -238,7 +251,9 @@ public class PosgradoBot {
         
         val fechaRecepcionDocumentos = intent("fechaRecepcionDocumentos") //(aclarar que es despues de preinscripción)
                 .trainingSentence("información sobre fecha de Recepción de documentos")
+                .trainingSentence("¿Cuál es la fecha límite para entregar los documentos?")
                 .trainingSentence("fecha de Recepción de documentos")
+                .trainingSentence("¿Cuál es la fecha límite para entregar los requisitos?")
                 .trainingSentence("Cuando reciben los documentos?");
 
         val fechaCursoPropedeuticoExamenConocimientos = intent("fechaCursoPropedeuticoExamenConocimientos")
@@ -280,9 +295,12 @@ public class PosgradoBot {
 
         val planEstudios  = intent("planEstudios")
                 .trainingSentence("Cual es el plan de estudios del MDPROGRAMA")
+                .trainingSentence("Cuántas optativas tiene el MDPROGRAMA")
+                .trainingSentence("Que materias llevan en el MDPROGRAMA")
+                .trainingSentence("cuales son las materias del MDPROGRAMA")
                 .trainingSentence("Cual es el plan de estudios del programa de MDPROGRAMA")
-                .parameter("nombrePrograma").fromFragment("MDPROGRAMA").entity(any());
-        
+                .parameter("PPROGRAMA").fromFragment("MDPROGRAMA").entity(ePrograma);
+
         val docentes   = intent("docentes")
                 .trainingSentence("información sobre los docentes")
                 .trainingSentence("Puedes darme la lista de profesores?")
@@ -319,10 +337,10 @@ public class PosgradoBot {
                 .trainingSentence("que vendra en los examenes de doctorado?")
                 .trainingSentence("Donde puedo obtener una guia de los examenes?")
                 .trainingSentence("que vendra en los examenes de admision?");
-        /*
-        val obtenerConvocatoria = intent("obtenerConvocatoria")
-                .trainingSentence("quiero obtener convocatoria")
-                .trainingSentence("puedes enviarme la imagen de la convocatoria?");*/
+
+        val titulacion = intent("titulacion")
+                .trainingSentence("como me puedo titular?")
+                .trainingSentence("¿cual es el proceso de titulacion?");
 
         val ofrecerAyuda = intent("ofrecerAyuda")
                 .trainingSentence("gracias")
@@ -413,6 +431,7 @@ public class PosgradoBot {
         val handleDireccion = state("handleDireccion");
         val handleRecepcionDocumentos = state("handleRecepcionDocumentos");
         val handleTienenBeca = state("handleTienenBeca");
+        val handletitulacion  = state("handletitulacion");
         val entiendo = state("entiendo");
         
         /*
@@ -485,6 +504,7 @@ public class PosgradoBot {
                 .when(intentIs(direccion)).moveTo(handleDireccion)
                 .when(intentIs(modalidadExamenes)).moveTo(handleModalidadExamenes)
                 .when(intentIs(guiasExamen)).moveTo(handleGuiasExamen)
+                .when(intentIs(titulacion)).moveTo(handletitulacion)
                 .when(intentIs(tienenBeca)).moveTo(handleTienenBeca);
         estadoSaludo
                 .body(context -> twilioPlatform.reply(context,"Buen día 😄, mi nombre es Angel y puedo asistirte con información acerca del posgrado en ciencias de información, ¿en que puedo ayudarte hoy?"))
@@ -508,12 +528,16 @@ public class PosgradoBot {
 
         handlePerfilEgreso
                 .body(context -> {
-                        String programa = (String) context.getIntent().getValue("nombrePrograma");
-                        if((programa.contains("m")||programa.contains("M"))&&(!programa.contains("d")|| !programa.contains("D")) ){
+                        String nprograma=" ";
+                        if(context.getIntent().getValue("PPROGRAMA")!= null){
+                                nprograma = (String) context.getIntent().getValue("PPROGRAMA");      
+                        }
+                        
+                        if((nprograma.contains("m")||nprograma.contains("M"))&&(!nprograma.contains("d")|| !nprograma.contains("D")) ){
                                 twilioPlatform.reply(context, "El egresado del programa de maestría tendrá dominio sobre las teorías, metodologías y tecnologías de las ciencias de la información, del contexto actual, estructura y desarrollo tecnológico del sector productivo; tendrá la habilidad de, con buena calidad, redactar y presentar informes científicos resultado de su trabajo, así como interpretar correctamente información científica en idioma inglés.\n \n"+
                                 "Poseerá la habilidad de aplicar la metodología de la investigación científica en un proyecto determinado, generando resultados de investigación original, al menos a nivel de iniciación; de la operación eficiente y manejo de equipo, materiales, instrumentos y equipos de laboratorio afines a las Ciencias de la Información; de crear nuevas técnicas y procedimientos de operación de materiales, equipos e instrumentos de laboratorios.\n \n"+
                                 "Puedes leer mas sobre esto en el sitio web del posgrado: https://pci.uas.edu.mx/pci/maestria/ en el apartado de Perfil de Egreso.");
-                        }else if((programa.contains("d")||programa.contains("D"))){
+                        }else if((nprograma.contains("d")||nprograma.contains("D"))){
                                 
                                 twilioPlatform.reply(context, "El egresado desarrollará las siguientes competencias: \n \n"+
                                 "Capacidad en la aplicación de la metodología de la investigación científica.\n \n"+
@@ -525,11 +549,11 @@ public class PosgradoBot {
                                 "Estará  capacitado  para  la  creación  de  nuevas  técnicas  y  procedimientos  de operación de materiales, equipos e instrumentos de laboratorios.\n \n"+
                                 "Estará capacitado para guiar y producir recurso humano en grupos de aprendizaje de educación superior y posgrado.");
                         }else{
-                                twilioPlatform.reply(context, "Maestría: \n \n"+
+                                twilioPlatform.reply(context, "*Maestría*: \n \n"+
                                 "El egresado tendrá dominio sobre las teorías, metodologías y tecnologías de las ciencias de la información, del contexto actual, estructura y desarrollo tecnológico del sector productivo; tendrá la habilidad de, con buena calidad, redactar y presentar informes científicos resultado de su trabajo, así como interpretar correctamente información científica en idioma inglés.\n \n"+
                                 "Puedes leer más sobre esto en el sitio web del posgrado: https://pci.uas.edu.mx/pci/maestria/ en el apartado de Perfil de Egreso o preguntarme directamente por el perfil de egresado de maestría.\n \n"+
                                 
-                                "Doctorado: \n \n"+
+                                "*Doctorado*: \n \n"+
                                 "El egresado desarrollará las siguientes competencias: \n \n"+
                                 "Capacidad en la aplicación de la metodología de la investigación científica.\n \n"+
                                 "Completo dominio de las teorías, metodologías y tecnologías de las ciencias de la información.\n \n"+
@@ -546,7 +570,7 @@ public class PosgradoBot {
                 .moveTo(estadoEspera);
                 
         handleInformacionGeneral
-                .body(context -> twilioPlatform.reply(context, " ¿Claro qué información necesitas? \n \n"+
+                .body(context -> twilioPlatform.reply(context, " Claro ¿qué información necesitas? \n \n"+
                 "Por ejemplo, puedo ayudarte a resolver las siguientes preguntas: \n \n"+
                 "¿Qué es el posgrado en ciencias de la información? \n"+
                 "¿cuánto tiempo dura el posgrado? \n"+
@@ -571,8 +595,11 @@ public class PosgradoBot {
         
         handleRequisitos
                 .body(context -> { 
-                        String programa = (String) context.getIntent().getValue("nombrePrograma");
-                        if((programa.contains("m")||programa.contains("M"))&&(!programa.contains("d")|| !programa.contains("D")) ){
+                        String nprograma=" ";
+                        if(context.getIntent().getValue("PPROGRAMA")!= null){
+                                nprograma = (String) context.getIntent().getValue("PPROGRAMA");      
+                        }
+                        if((nprograma.contains("m")||nprograma.contains("M"))&&(!nprograma.contains("d")|| !nprograma.contains("D")) ){
                                 twilioPlatform.reply(context, "• Solicitud de admisión. Formato: https://pci.uas.edu.mx/wp-content/uploads/2022/03/Solicitud_de_Ingreso.pdf \n \n"+
                                 "• Carta de intención.\n \n"+
                                 "• Currículum vitae con documentos probatorios.\n \n"+
@@ -589,7 +616,7 @@ public class PosgradoBot {
                                 "• Identificación oficial con fotografía.\n \n"+
                                 "• Presentar título de Licenciatura.\n \n"+
                                 "• En caso de no contar con el título, presentar documento probatorio de trámite.\n \n");
-                        }else if((programa.contains("d")||programa.contains("D"))){
+                        }else if((nprograma.contains("d")||nprograma.contains("D"))){
                                 
                                 twilioPlatform.reply(context, "• Presentar solicitud de admisión. https://pci.uas.edu.mx/wp-content/uploads/2022/03/Solicitud_de_Ingreso.pdf \n \n"+ 
                                 "• Identificación oficial con fotografía.\n \n"+
@@ -601,10 +628,10 @@ public class PosgradoBot {
                                 "• Computación y Sistemas: https://pci.uas.edu.mx/wp-content/uploads/2022/03/opcion-terminal-de-computacion-y-sistemas.pdf\n \n"+
                                 "• Geodesia y Geomática: https://pci.uas.edu.mx/wp-content/uploads/2022/03/opcion-terminal-de-geomatica.pdf \n \n"+
                                 "• Carta de presentación personal en la que se explique el interés que motiva su ingreso al programa.\n \n"+
-                                "• Certificado de Maestría con un promedio mínimo de 8, en una escala de 0 al 10.\n \n"+
+                                "• Certificado de Maestría con un promedio mínimo de 8\n \n"+
                                 "• Currículum Vitae acompañado de documentos probatorios.\n \n"+
                                 "• Dos cartas de recomendación académica de su Institución de origen. https://pci.uas.edu.mx/wp-content/uploads/2022/03/Carta-de-recomendacion.pdf \n \n"+
-                                "• Someterse a un proceso de admisión (exámenes y entrevistas) que defina su ingreso o no al Programa de Doctorado en Ciencias de la Información.\n \n"+
+                                "• Someterse a un proceso de admisión que defina su ingreso o no al Programa de Doctorado en Ciencias de la Información.\n \n"+
                                 "• Aprobar examen del idioma español en el Centro de Idiomas de las UAS, cuando el aspirante proceda de un país en el que no sea dominante de ese idioma.\n \n"+
                                 "• Entrevista con miembros del H. Comité Académico de Admisión.\n \n"+
                                 "• Presentar carta compromiso de dedicación de tiempo completo a sus estudios.");
@@ -640,26 +667,26 @@ public class PosgradoBot {
                         .fallback(context -> twilioPlatform.reply(context, "por favor responde si quieres que te muestre o no los pasos de preinscripción con un *si* o *no*"));
                         
         handleProcesoPreinscripcionPasos
-                .body(context -> twilioPlatform.reply(context, "Para realizar el proceso de preinscripción necesitas seguir los siguientes pasos:\n\n"+
-                        "1- ingresar al siguiente enlace: http://siia.uasnet.mx/preinscripcion/paso1a.asp\n \n"+
-                        "2- En la opción PRIMER INGRESO llenar el formulario con tus datos y seleccionar el nivel académico (Maestría o Doctorado). En la misma ventana selecciona la localidad donde está ubicado el Posgrado, la Unidad Académica y el Programa Educativo a cursar.\n\n"+
-                        "3- asegúrate de llenar todos tus datos y hacer click en la pestaña “acepto términos y condiciones”. Es requisito indispensable proporciones estos datos y aceptes te envíen mensajes por correo electrónico y/o teléfono, ya que sólo mediante esta vía se te informará el número de ficha de preinscripción y contraseña, Al terminar de llenar toda la información haz clic en REGISTRAR, con lo cual el sistema generará un número de control, que debes conservar para cualquier aclaración durante el proceso.\n\n"))
+                .body(context ->twilioPlatform.reply(context,"4- En el correo y/o mensaje que recibirás, se indica el número de ficha de preinscripción y la clave con los cuales puedes ingresar de nueva cuenta a la página de preinscripción y en la opción CONTINUAR imprimirás la hoja de pago de preinscripción, así como tu ficha de preinscripción. \n \n"+
+                "5- Realiza el pago en alguno de los lugares que se indican en la hoja de pago.\n \n"+
+                "6- La ficha de preinscripción contiene un número y clave de acceso para que ingreses al portal de admisión http://dse.uasnet.mx/admision ingresar número de ficha y clave.\n \n"+
+                "7- Llenar la solicitud de preinscripción (con mayúsculas, sin acentos, sin comas. no abreviar, no omitir ningún nombre, ni apellido)."+
+                "8- Imprimir 2 veces la solicitud de preinscripción.\n \n"+
+                "9- Imprimir el recibo de pago.\n \n"+
+                "10- Pagar en banco Banorte o a banco Santander.\n \n"+
+                "11- A las 24 horas de haber hecho el pago, volver a entrar a la página http://dse.uasnet.mx/admision para llenar el formulario del ceneval. (Llenar en su totalidad y sin errores ortográficos).\n \n"+
+                "12- Imprimir dos veces el pase de ingreso al examen ceneval.\n \n"+
+                "13- Entregar la siguiente documentación para la preinscripción en control escolar de la Facultad de Informática Culiacán (FIC):\n \n"+
+                "Copia del acta de nacimiento, Copia del certificado de Maestría para Doctorado, CURP impresa de internet, Solicitud de preinscripción, Recibo pagado.\n \n"+
+                "14. Al entregar la documentación se le tomará la foto y se le entregará la constancia de preinscripción.\n \n"))
                 .next()
                 .moveTo(handleProcesoPreinscripcionPasos2);
 
         handleProcesoPreinscripcionPasos2
-                .body(context -> twilioPlatform.reply(context,"4- En el correo y/o mensaje que recibirás, se indica el número de ficha de preinscripción y la clave con los cuales puedes ingresar de nueva cuenta a la página de preinscripción y en la opción CONTINUAR imprimirás la hoja de pago de preinscripción, así como tu ficha de preinscripción. \n \n"+
-                        "5- Realiza el pago en alguno de los lugares que se indican en la hoja de pago.\n \n"+
-                        "6- La ficha de preinscripción contiene un número y clave de acceso para que ingreses al portal de admisión http://dse.uasnet.mx/admision ingresar número de ficha y clave.\n \n"+
-                        "7- Llenar la solicitud de preinscripción (con mayúsculas, sin acentos, sin comas. no abreviar, no omitir ningún nombre, ni apellido)."+
-                        "8- Imprimir 2 veces la solicitud de preinscripción.\n \n"+
-                        "9- Imprimir el recibo de pago.\n \n"+
-                        "10- Pagar en banco Banorte o a banco Santander.\n \n"+
-                        "11- A las 24 horas de haber hecho el pago, volver a entrar a la página http://dse.uasnet.mx/admision para llenar el formulario del ceneval. (Llenar en su totalidad y sin errores ortográficos).\n \n"+
-                        "12- Imprimir dos veces el pase de ingreso al examen ceneval.\n \n"+
-                        "13- Entregar la siguiente documentación para la preinscripción en control escolar de la Facultad de Informática Culiacán (FIC):\n \n"+
-                        "Copia del acta de nacimiento, Copia del certificado de Maestría para Doctorado, CURP impresa de internet, Solicitud de preinscripción, Recibo pagado.\n \n"+
-                        "14. Al entregar la documentación se le tomará la foto y se le entregará la constancia de preinscripción.\n \n"))
+                .body(context -> twilioPlatform.reply(context, "Para realizar el proceso de preinscripción necesitas seguir los siguientes pasos:\n\n"+
+                "1- ingresar al siguiente enlace: http://siia.uasnet.mx/preinscripcion/paso1a.asp\n \n"+
+                "2- En la opción PRIMER INGRESO llenar el formulario con tus datos y seleccionar el nivel académico (Maestría o Doctorado). En la misma ventana selecciona la localidad donde está ubicado el Posgrado, la Unidad Académica y el Programa Educativo a cursar.\n\n"+
+                "3- asegúrate de llenar todos tus datos y hacer click en la pestaña “acepto términos y condiciones”. Es requisito indispensable proporciones estos datos y aceptes te envíen mensajes por correo electrónico y/o teléfono, ya que sólo mediante esta vía se te informará el número de ficha de preinscripción y contraseña, Al terminar de llenar toda la información haz clic en REGISTRAR, con lo cual el sistema generará un número de control, que debes conservar para cualquier aclaración durante el proceso.\n\n"))
                 .next()
                 .moveTo(estadoEspera);
         
@@ -737,9 +764,19 @@ public class PosgradoBot {
                         .moveTo(estadoEspera);
                 
                 handlePlanEstudios
-                        .body(context ->{
-                                twilioPlatform.replyMedia(context,"Mapa Curricular Maestría","https://raw.githubusercontent.com/AngelTM/assetsPosgradoBot/bcaa664d07e7bc47f4371ab4c78de6eea3df1c70/MapaCurricular_Maestria.jpg");
-                                twilioPlatform.replyMedia(context,"Mapa Curricular Doctorado ","https://raw.githubusercontent.com/AngelTM/assetsPosgradoBot/bcaa664d07e7bc47f4371ab4c78de6eea3df1c70/MapaCurricular_Doctorado.jpg");
+                        .body(context -> { 
+                                String nprograma=" ";
+                                if(context.getIntent().getValue("PPROGRAMA")!= null){
+                                        nprograma = (String) context.getIntent().getValue("PPROGRAMA");      
+                                }
+                                if((nprograma.contains("m")||nprograma.contains("M"))&&(!nprograma.contains("d")|| !nprograma.contains("D")) ){
+                                        twilioPlatform.replyMedia(context,"Mapa Curricular Maestría","https://raw.githubusercontent.com/AngelTM/assetsPosgradoBot/bcaa664d07e7bc47f4371ab4c78de6eea3df1c70/MapaCurricular_Maestria.jpg");
+                                }else if((nprograma.contains("d")||nprograma.contains("D"))){
+                                        twilioPlatform.replyMedia(context,"Mapa Curricular Doctorado ","https://raw.githubusercontent.com/AngelTM/assetsPosgradoBot/bcaa664d07e7bc47f4371ab4c78de6eea3df1c70/MapaCurricular_Doctorado.jpg");
+                                }else{
+                                        twilioPlatform.replyMedia(context,"Mapa Curricular Doctorado ","https://raw.githubusercontent.com/AngelTM/assetsPosgradoBot/bcaa664d07e7bc47f4371ab4c78de6eea3df1c70/MapaCurricular_Doctorado.jpg");    
+                                        twilioPlatform.replyMedia(context,"Mapa Curricular Maestría","https://raw.githubusercontent.com/AngelTM/assetsPosgradoBot/bcaa664d07e7bc47f4371ab4c78de6eea3df1c70/MapaCurricular_Maestria.jpg");
+                                }
                         })
                         .next()
                         .moveTo(estadoEspera);
@@ -825,6 +862,11 @@ public class PosgradoBot {
                         .next()
                         .moveTo(estadoEspera);
 
+                handletitulacion
+                        .body(context -> twilioPlatform.reply(context, "puedes leer el proceso completo de titulacion en el siguiente enlace: https://pci.uas.edu.mx/titulacion/"))
+                        .next()
+                        .moveTo(estadoEspera);
+
                 handleOfrecerAyuda
                         .body(context -> twilioPlatform.replyMedia(context, "Si tienes alguna otra duda por favor házmela saber, Te agradeceríamos que nos ayudaras para responder una breve encuesta y compartirnos cómo fue tu experiencia y así poder mejorar. Gracias😊\n \n"+
                         "Encuesta.com","https://raw.githubusercontent.com/AngelTM/assetsPosgradoBot/b2b2cff31c7a6680ccc5511ef9e612ac2a016a81/Convocatoria-PCI-2022.jpg"))
@@ -855,7 +897,7 @@ public class PosgradoBot {
                                 .stop(stopList)
                                 .build();
                         service.createCompletion("text-curie-001", completionRequest).getChoices().forEach(line -> {storyArray.add(line.getText());System.out.println(line); });
-                        //System.out.println(promptMasTextoUsuario);
+                        //      System.out.println(promptMasTextoUsuario);
                         //System.out.println(storyArray.get(0));
                         twilioPlatform.reply(context, storyArray.get(0));
                         sugerenciaGuardar = textoUsuario+"\n"+ storyArray.get(0);
@@ -895,21 +937,22 @@ public class PosgradoBot {
        
 
         //dialogFlow
-             
+        /*
         botConfiguration.addProperty(IntentRecognitionProviderFactory.INTENT_PROVIDER_KEY, DialogFlowConfiguration.DIALOGLFOW_INTENT_PROVIDER);
         botConfiguration.addProperty(DialogFlowConfiguration.PROJECT_ID_KEY, "pruebaxatkit-sipv");
         botConfiguration.addProperty(DialogFlowConfiguration.GOOGLE_CREDENTIALS_PATH_KEY, "xDialog.json");
         botConfiguration.addProperty(DialogFlowConfiguration.LANGUAGE_CODE_KEY, "es");
         botConfiguration.addProperty(DialogFlowConfiguration.CLEAN_AGENT_ON_STARTUP_KEY, true);  
         
-
-        /*
+*/
+        
         //NLP.js
+        
         botConfiguration.addProperty(IntentRecognitionProviderFactory.INTENT_PROVIDER_KEY, NlpjsConfiguration.NLPJS_INTENT_PROVIDER);
         botConfiguration.addProperty(NlpjsConfiguration.AGENT_ID_KEY, "default");
         botConfiguration.addProperty(NlpjsConfiguration.LANGUAGE_CODE_KEY, "es");
         botConfiguration.addProperty(NlpjsConfiguration.NLPJS_SERVER_KEY, "http://localhost:8080"); 
-    */
+        
 
         XatkitBot xatkitBot = new XatkitBot(botModel, botConfiguration);
         xatkitBot.run();
