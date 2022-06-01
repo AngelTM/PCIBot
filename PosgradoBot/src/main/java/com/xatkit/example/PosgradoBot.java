@@ -170,7 +170,7 @@ public class PosgradoBot {
                 .trainingSentence("cuánto tiempo dura el posgrado?")
                 .trainingSentence("Me gustaría saber la duración que tiene")
                 .trainingSentence("cuantos semestres son?")
-                .trainingSentence("cuanto tiempo dura una maestria")
+                .trainingSentence("cuanto tiempo dura la maestria")
                 .trainingSentence("cuanto tiempo dura un doctorado");
         //proceso de inscripcion y requisitos 
         val requisitos = intent("requisitos")
@@ -314,7 +314,8 @@ public class PosgradoBot {
         val docentes   = intent("docentes")
                 .trainingSentence("información sobre los docentes")
                 .trainingSentence("Puedes darme la lista de profesores?")
-                .trainingSentence("Quienes son los profesores?");
+                .trainingSentence("Quienes son los profesores?")
+                .trainingSentence("Que maestros se encuentran en el PCI");
 
         val informacionExamenes = intent("informacionExamenes")
                 .trainingSentence("información sobre los Examenes")
@@ -337,7 +338,7 @@ public class PosgradoBot {
         
         val direccion = intent("direccion")
                 .trainingSentence("Donde estan ubicados?")
-                .trainingSentence("necesito la direccion?")
+                .trainingSentence("cual es la direccion?")
                 .trainingSentence("Donde esta el posgrado?")
                 .trainingSentence("Donde esta ubicado el posgrado?");
 
@@ -794,12 +795,12 @@ public class PosgradoBot {
                                         nprograma = (String) context.getIntent().getValue("PPROGRAMA");      
                                 }
                                 if((nprograma.contains("m")||nprograma.contains("M"))&&(!nprograma.contains("d")|| !nprograma.contains("D")) ){
-                                        twilioPlatform.replyMedia(context,"Mapa Curricular Maestría","https://raw.githubusercontent.com/AngelTM/assetsPosgradoBot/bcaa664d07e7bc47f4371ab4c78de6eea3df1c70/MapaCurricular_Maestria.jpg");
+                                        twilioPlatform.replyMedia(context,"Mapa Curricular Maestría, puedes ver la lista de materias optativas en el siguiente enlace: https://pci.uas.edu.mx/materias-optativas/","https://raw.githubusercontent.com/AngelTM/assetsPosgradoBot/bcaa664d07e7bc47f4371ab4c78de6eea3df1c70/MapaCurricular_Maestria.jpg");
                                 }else if((nprograma.contains("d")||nprograma.contains("D"))){
-                                        twilioPlatform.replyMedia(context,"Mapa Curricular Doctorado ","https://raw.githubusercontent.com/AngelTM/assetsPosgradoBot/bcaa664d07e7bc47f4371ab4c78de6eea3df1c70/MapaCurricular_Doctorado.jpg");
+                                        twilioPlatform.replyMedia(context,"Mapa Curricular Doctorado, puedes ver la lista de materias optativas en el siguiente enlace: https://pci.uas.edu.mx/materias-optativas-doctorado/","https://raw.githubusercontent.com/AngelTM/assetsPosgradoBot/bcaa664d07e7bc47f4371ab4c78de6eea3df1c70/MapaCurricular_Doctorado.jpg");
                                 }else{
-                                        twilioPlatform.replyMedia(context,"Mapa Curricular Doctorado ","https://raw.githubusercontent.com/AngelTM/assetsPosgradoBot/bcaa664d07e7bc47f4371ab4c78de6eea3df1c70/MapaCurricular_Doctorado.jpg");    
-                                        twilioPlatform.replyMedia(context,"Mapa Curricular Maestría","https://raw.githubusercontent.com/AngelTM/assetsPosgradoBot/bcaa664d07e7bc47f4371ab4c78de6eea3df1c70/MapaCurricular_Maestria.jpg");
+                                        twilioPlatform.replyMedia(context,"Mapa Curricular Doctorado, puedes ver la lista de materias optativas en el siguiente enlace: https://pci.uas.edu.mx/materias-optativas-doctorado/","https://raw.githubusercontent.com/AngelTM/assetsPosgradoBot/bcaa664d07e7bc47f4371ab4c78de6eea3df1c70/MapaCurricular_Doctorado.jpg");    
+                                        twilioPlatform.replyMedia(context,"Mapa Curricular Maestría, puedes ver la lista de materias optativas en el siguiente enlace: https://pci.uas.edu.mx/materias-optativas/","https://raw.githubusercontent.com/AngelTM/assetsPosgradoBot/bcaa664d07e7bc47f4371ab4c78de6eea3df1c70/MapaCurricular_Maestria.jpg");
                                 }
                         })
                         .next()
