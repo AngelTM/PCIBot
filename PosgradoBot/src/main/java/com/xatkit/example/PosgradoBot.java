@@ -131,22 +131,14 @@ public class PosgradoBot {
                 .trainingSentence("Buen día")
                 .trainingSentence("buenas tardes")
                 .trainingSentence("que onda")
-                .trainingSentence("que paso");
+                .trainingSentence("que tal");
     
-        val comoEstas = intent("comoEstas")
-                .trainingSentence("Como estas?")
-                .trainingSentence("que tal?")
-                .trainingSentence("¿como te va?");
         
         val quienEres = intent("quienEres")
                 .trainingSentence("quien eres?")
                 .trainingSentence("quien es?")
                 .trainingSentence("cuentame sobre ti")
                 .trainingSentence("tu eres?");
-        
-        val comoTeHicieron = intent("comoTeHicieron")
-                .trainingSentence("Como te hicieron?")
-                .trainingSentence("que tecnologias utilizaron para crearte?");
 
         val informacionGeneral = intent("informacionGeneral")
                 .trainingSentence("Información")
@@ -408,7 +400,7 @@ public class PosgradoBot {
         val init = state("Init");
         val estadoEspera = state("EstadoEspera");
         val estadoSaludo = state("EstadoSaludo");
-        val estadoComoestas = state("EstadoComoestas");
+        //val estadoComoestas = state("EstadoComoestas");
         val quienSoy = state("quienSoy");
         val handlePerfilEgreso = state("HandlePerfilEgreso");
         val handleInformacionGeneral = state("handleInformacionGeneral");
@@ -443,7 +435,7 @@ public class PosgradoBot {
         val handleDireccion = state("handleDireccion");
         val handleRecepcionDocumentos = state("handleRecepcionDocumentos");
         val handleTienenBeca = state("handleTienenBeca");
-        val handletitulacion  = state("handletitulacion");
+        val handleTitulacion  = state("handleTitulacion");
         val entiendo = state("entiendo");
         
         /*
@@ -484,7 +476,7 @@ public class PosgradoBot {
                  * </pre>
                  */
                 .when(intentIs(saludo)).moveTo(estadoSaludo)
-                .when(intentIs(comoEstas)).moveTo(estadoComoestas)
+                //.when(intentIs(comoEstas)).moveTo(estadoComoestas)
                 .when(intentIs(quienEres)).moveTo(quienSoy)
                 .when(intentIs(recepcionDocumentos)).moveTo(handleRecepcionDocumentos)
                 .when(intentIs(perfilEgreso)).moveTo(handlePerfilEgreso)
@@ -516,7 +508,7 @@ public class PosgradoBot {
                 .when(intentIs(direccion)).moveTo(handleDireccion)
                 .when(intentIs(modalidadExamenes)).moveTo(handleModalidadExamenes)
                 .when(intentIs(guiasExamen)).moveTo(handleGuiasExamen)
-                .when(intentIs(titulacion)).moveTo(handletitulacion)
+                .when(intentIs(titulacion)).moveTo(handleTitulacion)
                 .when(intentIs(tienenBeca)).moveTo(handleTienenBeca);
         estadoSaludo
                 .body(context -> twilioPlatform.reply(context,"Buen día 😄, mi nombre es Angel y puedo asistirte con información acerca del posgrado en ciencias de información, ¿en que puedo ayudarte hoy?"))
@@ -526,17 +518,11 @@ public class PosgradoBot {
                  * want to go back in a state where we wait for the next intent.
                  */
                 .moveTo(estadoEspera);
-
-        estadoComoestas
-                .body(context -> twilioPlatform.reply(context, "Estoy bien, gracias si tienes alguna duda por favor házmela saber"))
-                .next()
-                .moveTo(estadoEspera);
         
         quienSoy
                 .body(context -> twilioPlatform.reply(context, "Soy un asistente virtual creado por un alumno del posgrado en ciencias de la información y estoy aquí para ayudarte con las dudas que tengas acerca del PCI"))
                 .next()
                 .moveTo(estadoEspera);
-        
 
         handlePerfilEgreso
                 .body(context -> {
@@ -585,8 +571,10 @@ public class PosgradoBot {
                 .body(context -> twilioPlatform.reply(context, " Claro ¿qué información necesitas? \n \n"+
                 "Por ejemplo, puedo ayudarte a resolver las siguientes preguntas: \n \n"+
                 "¿Qué es el posgrado en ciencias de la información? \n"+
-                "¿cuánto tiempo dura el posgrado? \n"+
-                "¿Cuándo obtengo los resultados de admisión?"))
+                "¿Cuánto tiempo dura el posgrado? \n"+
+                "¿Cuándo obtengo los resultados de admisión?\n"+
+                "Perfil de egreso de un alumno de maestria\n"+
+                "Fecha de inicio de actividades"))
                 .next()
                 .moveTo(estadoEspera);        
                 
@@ -892,7 +880,7 @@ public class PosgradoBot {
                         .next()
                         .moveTo(estadoEspera);
 
-                handletitulacion
+                handleTitulacion
                         .body(context -> twilioPlatform.reply(context, "puedes leer el proceso completo de titulacion en el siguiente enlace: https://pci.uas.edu.mx/titulacion/"))
                         .next()
                         .moveTo(estadoEspera);
