@@ -284,7 +284,7 @@ public class PosgradoBot {
                 .trainingSentence("Cual es la fecha de inicio de actividades")
                 .trainingSentence("cuando entran los alumnos?")
                 .trainingSentence("Cuando comienza el programa")
-                .trainingSentence("cuando empiezan las clases?");
+                .trainingSentence("cuando empiezan las clases?")
                 .trainingSentence("cuando empiezan las clases de maestria?");
         
         val frecuenciaConvocatoria= intent("frecuenciaConvocatoria")
