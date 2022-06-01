@@ -160,7 +160,7 @@ public class PosgradoBot {
 
         val perfilEgreso = intent("perfilEgreso")
                 .trainingSentence("Cual es el perfil de egreso de un alumno de maestria")
-                .trainingSentence("que obtengo al estudiar el maestria")
+                .trainingSentence("que obtengo al estudiar la maestria")
                 .trainingSentence("De que me sirve estudiar el maestria")
                 .trainingSentence("como sale un egresado de maestria")
                 .parameter("PPROGRAMA").fromFragment("maestria").entity(ePrograma);
@@ -169,8 +169,9 @@ public class PosgradoBot {
                 .trainingSentence("información sobre duración del programa de posgrado")
                 .trainingSentence("cuánto tiempo dura el posgrado?")
                 .trainingSentence("Me gustaría saber la duración que tiene")
-                .trainingSentence("cuantos semestres son?");
-
+                .trainingSentence("cuantos semestres son?")
+                .trainingSentence("cuanto tiempo dura una maestria")
+                .trainingSentence("cuanto tiempo dura un doctorado");
         //proceso de inscripcion y requisitos 
         val requisitos = intent("requisitos")
                 .trainingSentence("cuáles son los requisitos para ingresar a maestria?")
@@ -184,6 +185,8 @@ public class PosgradoBot {
                 .trainingSentence("cuales son los pasos para preinscribirme")
                 .trainingSentence("cuales son los pasos para pre inscribirme")
                 .trainingSentence("como puedo pre inscribirme")
+                .trainingSentence("como puedo preinscribirme a maestria")
+                .trainingSentence("como puedo preinscribirme a doctorado")
                 .trainingSentence("como realizar la pre inscripcion");
 
         val recepcionDocumentos = intent("recepcionDocumentos")
@@ -204,6 +207,7 @@ public class PosgradoBot {
                 .trainingSentence("Información sobre inscripción")
                 .trainingSentence("Cuando son las inscripciones?")
                 .trainingSentence("Cuando inician las inscripciones del doctorado?")
+                .trainingSentence("Cuando inician las inscripciones de maestria?")
                 .trainingSentence("como puedo inscribirme?");
 
         val costosProcesosBecas = intent("costosProcesosBecas")
@@ -281,6 +285,7 @@ public class PosgradoBot {
                 .trainingSentence("cuando entran los alumnos?")
                 .trainingSentence("Cuando comienza el programa")
                 .trainingSentence("cuando empiezan las clases?");
+                .trainingSentence("cuando empiezan las clases de maestria?");
         
         val frecuenciaConvocatoria= intent("frecuenciaConvocatoria")
                 .trainingSentence("Información frecuencia de la convocatoria")
@@ -290,6 +295,7 @@ public class PosgradoBot {
         val informacionMovilidad= intent("informacionMovilidad")
                 .trainingSentence("Información sobre movilidad")
                 .trainingSentence("Se puede realizar alguna movilidad durante la maestría?")
+                .trainingSentence("Se puede realizar alguna movilidad durante el doctorado?")
                 .trainingSentence("existe la posibilidad de estudiar en el extranjero?");        
         
         val lineasInvestigacion= intent("lineasInvestigacion")
@@ -887,7 +893,7 @@ public class PosgradoBot {
 
                 handleOfrecerAyuda
                         .body(context -> twilioPlatform.replyMedia(context, "Si tienes alguna otra duda por favor házmela saber, Te agradeceríamos que nos ayudaras para responder una breve encuesta y compartirnos cómo fue tu experiencia y así poder mejorar. Gracias😊\n \n"+
-                        "Encuesta.com","https://raw.githubusercontent.com/AngelTM/assetsPosgradoBot/b2b2cff31c7a6680ccc5511ef9e612ac2a016a81/Convocatoria-PCI-2022.jpg"))
+                        "https://forms.gle/drwH1HH4v7Ja95ye8","https://raw.githubusercontent.com/AngelTM/assetsPosgradoBot/b2b2cff31c7a6680ccc5511ef9e612ac2a016a81/Convocatoria-PCI-2022.jpg"))
                         .next()
                         .moveTo(estadoEspera);
 
