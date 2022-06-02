@@ -780,7 +780,7 @@ public class PosgradoBot {
                         .moveTo(estadoEspera);
 
                 handleInformacionMovilidad
-                        .body(context -> twilioPlatform.replyMedia(context,"Actualmente existe la posibilidad de acceder a un Programa de Beca de Movilidad, estancias nacionales e internacionales y otro tipo de colaboraciones para estudiantes de posgrado. Para más información puedes comunicarte con movilidadestudiantil@uas.edu.mx y coordinacionpci@uas.edu.mx","https://raw.githubusercontent.com/AngelTM/assetsPosgradoBot/bcaa664d07e7bc47f4371ab4c78de6eea3df1c70/movilidadUas.png"))
+                        .body(context -> twilioPlatform.replyMedia(context,"Actualmente existe la posibilidad de acceder a un Programa de Beca de Movilidad, estancias nacionales e internacionales y otro tipo de colaboraciones para estudiantes de posgrado. Para más información puedes comunicarte con movilidadestudiantil@uas.edu.mx y coordinacionpci@uas.edu.mx","https://raw.githubusercontent.com/AngelTM/assetsPosgradoBot/e1f6336dc4a0314d6b0d4d5642eb39704e6e8eb1/movilidad.jpg"))
                         .next()
                         .moveTo(estadoEspera);
 
@@ -928,7 +928,7 @@ public class PosgradoBot {
                         //System.out.println(storyArray.get(0));
                         if(storyArray.get(0).length()>30){
                                 twilioPlatform.reply(context, storyArray.get(0));
-                                sugerenciaGuardar = textoUsuario+"\n"+ storyArray.get(0);
+                                sugerenciaGuardar = "\n"+textoUsuario+"\n"+ storyArray.get(0);
                                 guardarFichero(sugerenciaGuardar);
                         }
                         
