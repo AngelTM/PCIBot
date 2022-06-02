@@ -315,6 +315,7 @@ public class PosgradoBot {
                 .trainingSentence("información sobre los docentes")
                 .trainingSentence("Puedes darme la lista de profesores?")
                 .trainingSentence("Quienes son los profesores?")
+                .trainingSentence("Cual es la plantilla del personal?")
                 .trainingSentence("Que maestros se encuentran en el PCI");
 
         val informacionExamenes = intent("informacionExamenes")
@@ -340,6 +341,7 @@ public class PosgradoBot {
                 .trainingSentence("Donde estan ubicados?")
                 .trainingSentence("cual es la direccion?")
                 .trainingSentence("Donde esta el posgrado?")
+                .trainingSentence("En que ciudad se realiza el posgrado")
                 .trainingSentence("Donde esta ubicado el posgrado?");
 
         val guiasExamen = intent("guiasExamen")
