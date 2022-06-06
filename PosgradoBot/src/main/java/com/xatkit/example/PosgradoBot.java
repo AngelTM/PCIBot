@@ -103,6 +103,8 @@ public class PosgradoBot {
         "sugerencia: si te interesa puedes intentar escribir: Información  general\n"+
         "usuario: te quiero\n"+
         "lo siento no tengo una sugerencia para mostrar\n"+
+        "usuario: quiero sacar un kardex\n"+
+        "sugerencia: si te interesa puedes intentar escribir: Datos de Contacto\n"+
         "usuario: ¿que pasa si no puedo ir a hacer el examen?\n"+
         "sugerencia: si te interesa puedes intentar escribir: información sobre la modalidad de los examenes\n"+
         "Conversación:\n"+
@@ -361,7 +363,8 @@ public class PosgradoBot {
                 .trainingSentence("Perfecto")
                 .trainingSentence("Ok")
                 .trainingSentence("si")
-                .trainingSentence("bien");
+                .trainingSentence("bien")
+                .trainingSentence("adios");
         
         val respuestaNegativa = intent("respuestaNegativa")
                 .trainingSentence("no gracias")
