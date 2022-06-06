@@ -51,7 +51,7 @@ public class PosgradoBot {
         "¿Dónde están ubicados?\n"+
         "Datos de Contacto\n"+
         "Información sobre los docentes\n"+
-        "Cuál es el plan de estudios del programa de maestría\n"+
+        "Cuál es el plan de estudios del programa de maestría\n"+               
         "Cuáles son las líneas de investigación\n"+
         "Información sobre movilidad\n"+
         "Información frecuencia de la convocatoria\n"+
@@ -86,23 +86,27 @@ public class PosgradoBot {
         "usuario: ¿me queda muy lejos?\n"+
         "sugerencia: si te interesa puedes intentar escribir: ¿Dónde están ubicados?\n"+
         "usuario: es dificil hablar japones?\n"+
-        "lo siento no tengo una sugerencia para mostrar\n"+
+        "sugerencia: lo siento no tengo una sugerencia para mostrar\n"+     
         "usuario: esta muy caro?\n"+
         "sugerencia: si te interesa puedes intentar escribir: Información  sobre costos\n"+
         "usuario: is expensive?\n"+
         "sugerencia: si te interesa puedes intentar escribir: Información  sobre costos\n"+
+        "usuario: Información sobre perros\n"+
+        "sugerencia: lo siento no tengo una sugerencia para mostrar\n"+
         "usuario: Is it too far from my house?\n"+
         "sugerencia: si te interesa puedes intentar escribir: ¿Dónde están ubicados?\n"+
         "usuario: quiero escuchar musica\n"+
-        "lo siento no tengo una sugerencia para mostrar\n"+
+        "sugerencia: lo siento no tengo una sugerencia para mostrar\n"+
+        "usuario: What are the requirements to enter a master's degree?\n"+
+        "sugerencia: si te interesa puedes intentar escribir: Cuáles son los requisitos para ingresar a maestría?\n"+
         "usuario: te quiero\n"+
-        "lo siento no tengo una sugerencia para mostrar\n"+
+        "sugerencia: lo siento no tengo una sugerencia para mostrar\n"+
         "usuario: estoy aburrido\n"+
         "sugerencia: si te interesa puedes intentar escribir: Información sobre movilidad\n"+
         "usuario: I don't know what to do\n"+
         "sugerencia: si te interesa puedes intentar escribir: Información  general\n"+
         "usuario: te quiero\n"+
-        "lo siento no tengo una sugerencia para mostrar\n"+
+        "sugerencia: lo siento no tengo una sugerencia para mostrar\n"+
         "usuario: quiero sacar un kardex\n"+
         "sugerencia: si te interesa puedes intentar escribir: Datos de Contacto\n"+
         "usuario: ¿que pasa si no puedo ir a hacer el examen?\n"+
