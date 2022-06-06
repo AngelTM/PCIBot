@@ -79,6 +79,8 @@ public class PosgradoBot {
         "Ejemplo:\n"+
         "usuario: ¿da clases el profe Carlos?\n"+
         "sugerencia: si te interesa puedes intentar escribir: Información sobre los docentes\n"+
+        "usuario: hora\n"+
+        "sugerencia: si te interesa puedes intentar escribir: Cuál es la fecha de inicio de actividades\n"+
         "usuario: pero no tengo dinero\n"+
         "sugerencia: si te interesa puedes intentar escribir: Información sobre becas\n"+
         "usuario: no entendí que tengo que hacer\n"+
@@ -221,7 +223,9 @@ public class PosgradoBot {
                 .trainingSentence("que mensualidad tiene")
                 .trainingSentence("Cuáles son los costos de las materias o semestres?")
                 .trainingSentence("cada cuanto pagan?")
-                .trainingSentence("Cuanto cuesta?");
+                .trainingSentence("Cuanto cuesta?")
+                .trainingSentence("¿Cuál es el precio?")
+                .trainingSentence("precio");
 
         val tienenBeca = intent("tienenBeca")
                 .trainingSentence("Información  sobre becas")
@@ -348,7 +352,8 @@ public class PosgradoBot {
                 .trainingSentence("cual es la direccion?")
                 .trainingSentence("Donde esta el posgrado?")
                 .trainingSentence("En que ciudad se realiza el posgrado")
-                .trainingSentence("Donde esta ubicado el posgrado?");
+                .trainingSentence("Donde esta ubicado el posgrado?")
+                .trainingSentence("lugar");
 
         val guiasExamen = intent("guiasExamen")
                 .trainingSentence("tienes una guia del examen?")
@@ -927,7 +932,7 @@ public class PosgradoBot {
                                 .prompt(promptMasTextoUsuario)
                                 .echo(false)
                                 .maxTokens(96)
-                                .temperature(0.0)
+                                .temperature(0.1)
                                 .stop(stopList)
                                 .build();
                         service.createCompletion("text-curie-001", completionRequest).getChoices().forEach(line -> {storyArray.add(line.getText());System.out.println(line); });
@@ -1004,7 +1009,7 @@ public class PosgradoBot {
         BufferedWriter bw = null;
         FileWriter fw = null;
         try {
-            File file = new File("/root/recomendacionesLog/sugerencias.txt");
+            File file = new File("/root/recomendacionesLog/sugerenciast01.txt");
             // Si el archivo no existe, se crea!
             if (!file.exists()) {
                 file.createNewFile();
