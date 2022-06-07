@@ -54,6 +54,7 @@ public class PosgradoBot {
         "Cuál es el plan de estudios del programa de maestría\n"+               
         "Cuáles son las líneas de investigación\n"+
         "Información sobre movilidad\n"+
+        "Quién te programó?\n"+
         "Información frecuencia de la convocatoria\n"+
         "Cuál es la fecha de inicio de actividades\n"+
         "Cuál es la fecha del Curso propedéutico y examen de conocimientos\n"+
@@ -310,14 +311,18 @@ public class PosgradoBot {
         
         val lineasInvestigacion= intent("lineasInvestigacion")
                 .trainingSentence("Cuales son las lineas de investigacion")
-                .trainingSentence("Que son las LGAC");
-                
+                .trainingSentence("Que son las LGAC")
+                .trainingSentence("Que es la geodesia")
+                .trainingSentence("en que consiste la linea de Computación y Sistemas")
+                .trainingSentence("en que consiste la linea de geodesia y geomatica?")
+                .trainingSentence("Qué es la geomática");
 
         val planEstudios  = intent("planEstudios")
                 .trainingSentence("Cual es el plan de estudios del doctorado")
                 .trainingSentence("Cuántas optativas tiene el doctorado")
                 .trainingSentence("Que materias llevan en el doctorado")
                 .trainingSentence("cuales son las materias del doctorado")
+                .trainingSentence("Cuál es el programa académico?")
                 .trainingSentence("Cual es el plan de estudios del programa de doctorado")
                 .parameter("PPROGRAMA").fromFragment("doctorado").entity(ePrograma);
 
@@ -373,6 +378,7 @@ public class PosgradoBot {
                 .trainingSentence("Ok")
                 .trainingSentence("si")
                 .trainingSentence("bien")
+                .trainingSentence("arre")
                 .trainingSentence("adios");
         
         val respuestaNegativa = intent("respuestaNegativa")
@@ -381,7 +387,14 @@ public class PosgradoBot {
                 .trainingSentence("negativo")
                 .trainingSentence("nop")
                 .trainingSentence("nel");
-
+                
+        val informacionBot = intent("informacionBot")
+                .trainingSentence("como te hicieron")
+                .trainingSentence("quien te hizo?")
+                .trainingSentence("como estas hecho?")
+                .trainingSentence("que tecnologias utilizaron para crearte?")
+                .trainingSentence("Quién te programó?")
+                .trainingSentence("como te programaron?");
         /*
          * Instantiate the platform we will use in the bot definition.
          * <p>
@@ -421,7 +434,7 @@ public class PosgradoBot {
         val init = state("Init");
         val estadoEspera = state("EstadoEspera");
         val estadoSaludo = state("EstadoSaludo");
-        //val estadoComoestas = state("EstadoComoestas");
+        val handleInformacionBot = state("handleInformacionBot"); 
         val quienSoy = state("quienSoy");
         val handlePerfilEgreso = state("HandlePerfilEgreso");
         val handleInformacionGeneral = state("handleInformacionGeneral");
@@ -530,7 +543,9 @@ public class PosgradoBot {
                 .when(intentIs(modalidadExamenes)).moveTo(handleModalidadExamenes)
                 .when(intentIs(guiasExamen)).moveTo(handleGuiasExamen)
                 .when(intentIs(titulacion)).moveTo(handleTitulacion)
-                .when(intentIs(tienenBeca)).moveTo(handleTienenBeca);
+                .when(intentIs(tienenBeca)).moveTo(handleTienenBeca)
+                .when(intentIs(informacionBot)).moveTo(handleInformacionBot);        
+
         estadoSaludo
                 .body(context -> twilioPlatform.reply(context,"Buen día 😄, mi nombre es Angel y puedo asistirte con información acerca del posgrado en ciencias de información, ¿en que puedo ayudarte hoy?"))
                 .next()
@@ -903,6 +918,11 @@ public class PosgradoBot {
 
                 handleTitulacion
                         .body(context -> twilioPlatform.reply(context, "puedes leer el proceso completo de titulacion en el siguiente enlace: https://pci.uas.edu.mx/titulacion/"))
+                        .next()
+                        .moveTo(estadoEspera);
+
+                handleInformacionBot
+                        .body(context -> twilioPlatform.reply(context, "Fui creado por un alumno del PCI utilizando el framework Xatkit el cual implementa un lenguaje de dominio específico para especificar las intenciones del usuario y orquestar las tecnologías con las que interactuara el bot, en este momento estoy utilizando Dialogflow como servicio proveedor de procesamiento de lenguaje natural para detectar las intenciones del usuario y en caso de no detectar la intención en tu mensaje se intenta realizar una sugerencia utilizando el motor Curie de el modelo de lenguaje autorregresivo GPT-3 de OpenAI la cual genera texto a parir de una entrada la cual incluye el mensaje del usuario"))
                         .next()
                         .moveTo(estadoEspera);
 
