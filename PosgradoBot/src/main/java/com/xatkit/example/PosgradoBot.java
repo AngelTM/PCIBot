@@ -118,7 +118,6 @@ public class PosgradoBot {
         "usuario:"; 
         ArrayList<String> stopList = new ArrayList<String>();
         stopList.add("sugerencia:");
-        stopList.add("\n");
         //definicion de entidades
         
         
@@ -958,7 +957,7 @@ public class PosgradoBot {
                         service.createCompletion("text-curie-001", completionRequest).getChoices().forEach(line -> {storyArray.add(line.getText());System.out.println(line); });
                         //      System.out.println(promptMasTextoUsuario);
                         //System.out.println(storyArray.get(0));
-                        if(storyArray.get(0).length()>30){
+                        if(storyArray.get(0).length()>25){
                                 twilioPlatform.reply(context, storyArray.get(0));
                                 sugerenciaGuardar = "\n"+textoUsuario+"\n"+ storyArray.get(0);
                                 guardarFichero(sugerenciaGuardar);
