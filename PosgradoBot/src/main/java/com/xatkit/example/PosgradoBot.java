@@ -962,6 +962,9 @@ public class PosgradoBot {
                                 twilioPlatform.reply(context, storyArray.get(0));
                                 sugerenciaGuardar = "\n"+textoUsuario+"\n"+ storyArray.get(0);
                                 guardarFichero(sugerenciaGuardar);
+                        }else{
+                                sugerenciaGuardar = "\n"+textoUsuario+"\n"+ storyArray.get(0);
+                                guardarFichero(sugerenciaGuardar);   
                         }
                         
                         
