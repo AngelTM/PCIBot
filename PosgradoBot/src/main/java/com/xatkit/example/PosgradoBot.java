@@ -76,7 +76,7 @@ public class PosgradoBot {
         "¿Cómo te hicieron?\n"+
         "Cuál es la fecha del Curso propedéutico y examen de conocimientos\n"+
         "Instrucciones:\n"+
-        "pregunta al usuario la opción que puede interesarle de la Lista de opciones según el mensaje del usuario en la conversación de la misma forma que en el Ejemplo , solo puedes contestar con ejemplos de la Lista de opciones y debes realizar una sugerencia que tenga relación con el mensaje del usuario, la sugerencia debe ser siempre en español, si no puedes ofrecer una recomendacion acorde o util de la Lista de opciones responde con un 'lo siento no tengo una sugerencia para mostrar' ..\n"+
+        "pregunta al usuario la opción que puede interesarle de la Lista de opciones según el mensaje del usuario en la conversación de la misma forma que en el Ejemplo , solo puedes contestar con ejemplos de la Lista de opciones y debes realizar una sugerencia que tenga relación con el mensaje del usuario, si no puedes ofrecer una recomendacion acorde o util de la Lista de opciones responde con un 'lo siento no tengo una sugerencia para mostrar' ..\n"+
         "Ejemplo:\n"+
         "usuario: ¿da clases el profe Carlos?\n"+
         "sugerencia: si te interesa puedes intentar escribir: Información sobre los docentes\n"+
