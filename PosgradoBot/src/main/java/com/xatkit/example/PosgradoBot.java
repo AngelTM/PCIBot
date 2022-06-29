@@ -44,7 +44,7 @@ public class PosgradoBot {
     
 
     public static void main(String[] args) {
-        OpenAiService service = new OpenAiService("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");
+        OpenAiService service = new OpenAiService("Token");
         ArrayList<String> storyArray = new ArrayList<String>();
         String promtDirecto="Lista de opciones:\n"+
         "Tienes una guía del examen?\n"+
@@ -997,14 +997,14 @@ public class PosgradoBot {
          */
        
 
-        botConfiguration.addProperty("xatkit.twilio.username", "AC8b7130bbbe59b296cddea45f8c8ca1f0");
-        botConfiguration.addProperty("xatkit.twilio.auth.token", "0dd068b057dd6582c2c4394e797131c0");
+        botConfiguration.addProperty("xatkit.twilio.username", "twilioUserName");
+        botConfiguration.addProperty("xatkit.twilio.auth.token", "twilioAuthToken");
        
 
         //dialogFlow
         
         botConfiguration.addProperty(IntentRecognitionProviderFactory.INTENT_PROVIDER_KEY, DialogFlowConfiguration.DIALOGLFOW_INTENT_PROVIDER);
-        botConfiguration.addProperty(DialogFlowConfiguration.PROJECT_ID_KEY, "pruebaxatkit-sipv");
+        botConfiguration.addProperty(DialogFlowConfiguration.PROJECT_ID_KEY, "ID_KEY");
         botConfiguration.addProperty(DialogFlowConfiguration.GOOGLE_CREDENTIALS_PATH_KEY, "xDialog.json");
         botConfiguration.addProperty(DialogFlowConfiguration.LANGUAGE_CODE_KEY, "es");
         botConfiguration.addProperty(DialogFlowConfiguration.CLEAN_AGENT_ON_STARTUP_KEY, true);  
